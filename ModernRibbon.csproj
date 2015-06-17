@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2902ABEE-909B-4370-8CBB-37B873D9043B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModernRibbon</RootNamespace>
+    <AssemblyName>ModernRibbon</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Ribbon\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\action_Cancel_16xLG.png" />
+    <Resource Include="Images\action_Cancel_32xLG.png" />
+    <Resource Include="Images\add-file48.png" />
+    <Resource Include="Images\Add.ico" />
+    <Resource Include="Images\Alert_16xLG.png" />
+    <Resource Include="Images\Alert_32xLG.png" />
+    <Resource Include="Images\arrow-claro.png" />
+    <Resource Include="Images\arrow-left.png" />
+    <Resource Include="Images\Bullets.ico" />
+    <Resource Include="Images\canc-chec32.png" />
+    <Resource Include="Images\checkin32.png" />
+    <Resource Include="Images\checkout32.png" />
+    <Resource Include="Images\ClassIcon.ico" />
+    <Resource Include="Images\clock.png" />
+    <Resource Include="Images\CRUD\Delete_Record-128.png" />
+    <Resource Include="Images\CRUD\Edit_Record-128.png" />
+    <Resource Include="Images\Documents_32x.png" />
+    <Resource Include="Images\download-error.png" />
+    <Resource Include="Images\download_finished.png" />
+    <Resource Include="Images\Email_32.png" />
+    <Resource Include="Images\Extensions\16\application.png" />
+    <Resource Include="Images\Extensions\16\bmp.png" />
+    <Resource Include="Images\Extensions\16\bpm.png" />
+    <Resource Include="Images\Extensions\16\cer.png" />
+    <Resource Include="Images\Extensions\16\config.png" />
+    <Resource Include="Images\Extensions\16\cs.png" />
+    <Resource Include="Images\Extensions\16\default.png" />
+    <Resource Include="Images\Extensions\16\doc.png" />
+    <Resource Include="Images\Extensions\16\docm.png" />
+    <Resource Include="Images\Extensions\16\docx.png" />
+    <Resource Include="Images\Extensions\16\dot.png" />
+    <Resource Include="Images\Extensions\16\dotm.png" />
+    <Resource Include="Images\Extensions\16\dotx.png" />
+    <Resource Include="Images\Extensions\16\ep.png" />
+    <Resource Include="Images\Extensions\16\gif.png" />
+    <Resource Include="Images\Extensions\16\gz.png" />
+    <Resource Include="Images\Extensions\16\htm.png" />
+    <Resource Include="Images\Extensions\16\html.png" />
+    <Resource Include="Images\Extensions\16\ico.png" />
+    <Resource Include="Images\Extensions\16\jpeg.png" />
+    <Resource Include="Images\Extensions\16\jpg.png" />
+    <Resource Include="Images\Extensions\16\log.png" />
+    <Resource Include="Images\Extensions\16\mht.png" />
+    <Resource Include="Images\Extensions\16\mm.png" />
+    <Resource Include="Images\Extensions\16\mp3.png" />
+    <Resource Include="Images\Extensions\16\msi.png" />
+    <Resource Include="Images\Extensions\16\odt.png" />
+    <Resource Include="Images\Extensions\16\otf.png" />
+    <Resource Include="Images\Extensions\16\Paste.ico" />
+    <Resource Include="Images\Extensions\16\pdf.png" />
+    <Resource Include="Images\Extensions\16\png.png" />
+    <Resource Include="Images\Extensions\16\pot.png" />
+    <Resource Include="Images\Extensions\16\potx.png" />
+    <Resource Include="Images\Extensions\16\ppt.png" />
+    <Resource Include="Images\Extensions\16\pptx.png" />
+    <Resource Include="Images\Extensions\16\properties.png" />
+    <Resource Include="Images\Extensions\16\rar.png" />
+    <Resource Include="Images\Extensions\16\rdp.png" />
+    <Resource Include="Images\Extensions\16\rtf.png" />
+    <Resource Include="Images\Extensions\16\sln.png" />
+    <Resource Include="Images\Extensions\16\sql.png" />
+    <Resource Include="Images\Extensions\16\suo.png" />
+    <Resource Include="Images\Extensions\16\svg.png" />
+    <Resource Include="Images\Extensions\16\tif.png" />
+    <Resource Include="Images\Extensions\16\txt.png" />
+    <Resource Include="Images\Extensions\16\vsd.png" />
+    <Resource Include="Images\Extensions\16\vss.png" />
+    <Resource Include="Images\Extensions\16\vssscc.png" />
+    <Resource Include="Images\Extensions\16\xaml.png" />
+    <Resource Include="Images\Extensions\16\xls.png" />
+    <Resource Include="Images\Extensions\16\xlsb.png" />
+    <Resource Include="Images\Extensions\16\xlsm.png" />
+    <Resource Include="Images\Extensions\16\xlsx.png" />
+    <Resource Include="Images\Extensions\16\xlt.png" />
+    <Resource Include="Images\Extensions\16\xml.png" />
+    <Resource Include="Images\Extensions\16\xps.png" />
+    <Resource Include="Images\Extensions\16\zip.png" />
+    <Resource Include="Images\Extensions\32\application.png" />
+    <Resource Include="Images\Extensions\32\cer.png" />
+    <Resource Include="Images\Extensions\32\config.png" />
+    <Resource Include="Images\Extensions\32\cs.png" />
+    <Resource Include="Images\Extensions\32\doc.png" />
+    <Resource Include="Images\Extensions\32\docx.png" />
+    <Resource Include="Images\Extensions\32\gif.png" />
+    <Resource Include="Images\Extensions\32\gz.png" />
+    <Resource Include="Images\Extensions\32\html.png" />
+    <Resource Include="Images\Extensions\32\ico.png" />
+    <Resource Include="Images\Extensions\32\jpg.png" />
+    <Resource Include="Images\Extensions\32\log.png" />
+    <Resource Include="Images\Extensions\32\mp3.png" />
+    <Resource Include="Images\Extensions\32\msi.png" />
+    <Resource Include="Images\Extensions\32\otf.png" />
+    <Resource Include="Images\Extensions\32\Paste.ico" />
+    <Resource Include="Images\Extensions\32\pdf.png" />
+    <Resource Include="Images\Extensions\32\png.png" />
+    <Resource Include="Images\Extensions\32\ppt.png" />
+    <Resource Include="Images\Extensions\32\pptx.png" />
+    <Resource Include="Images\Extensions\32\properties.png" />
+    <Resource Include="Images\Extensions\32\psd.png" />
+    <Resource Include="Images\Extensions\32\rdp.png" />
+    <Resource Include="Images\Extensions\32\rtf.png" />
+    <Resource Include="Images\Extensions\32\sln.png" />
+    <Resource Include="Images\Extensions\32\sql.png" />
+    <Resource Include="Images\Extensions\32\suo.png" />
+    <Resource Include="Images\Extensions\32\svg.png" />
+    <Resource Include="Images\Extensions\32\txt.png" />
+    <Resource Include="Images\Extensions\32\vss.png" />
+    <Resource Include="Images\Extensions\32\vssscc.png" />
+    <Resource Include="Images\Extensions\32\xaml.png" />
+    <Resource Include="Images\Extensions\32\xlsx.png" />
+    <Resource Include="Images\favicon-dd-branco.png" />
+    <Resource Include="Images\features_16.png" />
+    <Resource Include="Images\Fields_32x.png" />
+    <Resource Include="Images\File_Sharing_32.png" />
+    <Resource Include="Images\Folder.ico" />
+    <Resource Include="Images\Folder_Open.ico" />
+    <Resource Include="Images\HiddenFolder.ico" />
+    <Resource Include="Images\HiddenFolder.png" />
+    <Resource Include="Images\HiddenFolder_Open.png" />
+    <Resource Include="Images\hiddenRepository.png" />
+    <Resource Include="Images\Icons\additional_fields_48.ico" />
+    <Resource Include="Images\Icons\additional_fields_48.png" />
+    <Resource Include="Images\Icons\add_file_48.ico" />
+    <Resource Include="Images\Icons\arrow_back_color_32xLG.png" />
+    <Resource Include="Images\Icons\arrow_Forward_color_32xLG.png" />
+    <Resource Include="Images\Icons\client_16.png" />
+    <Resource Include="Images\Icons\Client_32.png" />
+    <Resource Include="Images\Icons\client_48.ico" />
+    <Resource Include="Images\Icons\client_48.png" />
+    <Resource Include="Images\Icons\configuration_16.png" />
+    <Resource Include="Images\Icons\configuration_32.png" />
+    <Resource Include="Images\Icons\configuration_48.png" />
+    <Resource Include="Images\Icons\ddv4_256.ico" />
+    <Resource Include="Images\Icons\ddv4_32.ico" />
+    <Resource Include="Images\Icons\Documents_48.png" />
+    <Resource Include="Images\Icons\Document_48.png" />
+    <Resource Include="Images\Icons\Document_Type_48.ico" />
+    <Resource Include="Images\Icons\Document_Type_48.png" />
+    <Resource Include="Images\Icons\Download_16.png" />
+    <Resource Include="Images\Icons\Download_24.png" />
+    <Resource Include="Images\Icons\Download_32.png" />
+    <Resource Include="Images\Icons\Download_48.png" />
+    <Resource Include="Images\Icons\Download_64.png" />
+    <Resource Include="Images\Icons\Environment_48.ico" />
+    <Resource Include="Images\Icons\Environment_48.png" />
+    <Resource Include="Images\Icons\features_16.ico" />
+    <Resource Include="Images\Icons\File_Sharing_48.ico" />
+    <Resource Include="Images\Icons\info-48.ico" />
+    <Resource Include="Images\Icons\List_16.png" />
+    <Resource Include="Images\Icons\List_48.ico" />
+    <Resource Include="Images\Icons\List_48.png" />
+    <Resource Include="Images\Icons\magnifier_16xMD.png" />
+    <Resource Include="Images\Icons\Output_16xLG.png" />
+    <Resource Include="Images\Icons\PencilAngled_16xLG.ico" />
+    <Resource Include="Images\Icons\roles_48.ico" />
+    <Resource Include="Images\Icons\roles_48.png" />
+    <Resource Include="Images\Icons\Symbols_Complete_and_ok_16xLG.png" />
+    <Resource Include="Images\Icons\Symbols_Critical_16xLG.png" />
+    <Resource Include="Images\Icons\Tasks_16.png" />
+    <Resource Include="Images\Icons\Tasks_24.png" />
+    <Resource Include="Images\Icons\Tasks_32.png" />
+    <Resource Include="Images\Icons\Tasks_48.png" />
+    <Resource Include="Images\Icons\Tasks_64.png" />
+    <Resource Include="Images\Icons\Upload_16.png" />
+    <Resource Include="Images\Icons\Upload_24.png" />
+    <Resource Include="Images\Icons\Upload_32.png" />
+    <Resource Include="Images\Icons\Upload_48.png" />
+    <Resource Include="Images\Icons\User Services_16.png" />
+    <Resource Include="Images\Icons\User Services_24.png" />
+    <Resource Include="Images\Icons\User Services_32.png" />
+    <Resource Include="Images\Icons\User Services_48.png" />
+    <Resource Include="Images\Icons\User Services_64.png" />
+    <Resource Include="Images\Icons\Users_16.png" />
+    <Resource Include="Images\Icons\Users_24.png" />
+    <Resource Include="Images\Icons\Users_32.png" />
+    <Resource Include="Images\Icons\Users_48.ico" />
+    <Resource Include="Images\Icons\Users_48.png" />
+    <Resource Include="Images\Icons\Users_64.png" />
+    <Resource Include="Images\Icons\User_16.png" />
+    <Resource Include="Images\Icons\User_24.png" />
+    <Resource Include="Images\Icons\User_32.png" />
+    <Resource Include="Images\Icons\User_48.ico" />
+    <Resource Include="Images\Icons\User_48.png" />
+    <Resource Include="Images\Icons\User_64.png" />
+    <Resource Include="Images\info-16.png" />
+    <Resource Include="Images\info-48.png" />
+    <Resource Include="Images\loading.gif" />
+    <Resource Include="Images\Logo_Digitaldoc250.png" />
+    <Resource Include="Images\password_16.png" />
+    <Resource Include="Images\password_48.png" />
+    <Resource Include="Images\pending_scan_16.png" />
+    <Resource Include="Images\pending_scan_48.png" />
+    <Resource Include="Images\QuickAccess_16.png" />
+    <Resource Include="Images\remove128.png" />
+    <Resource Include="Images\replace_file_16.png" />
+    <Resource Include="Images\replace_file_48.png" />
+    <Resource Include="Images\repository.png" />
+    <Resource Include="Images\save_32.png" />
+    <Resource Include="Images\SendFiles\file_error.png" />
+    <Resource Include="Images\SendFiles\naovisualizavel.jpg" />
+    <Resource Include="Images\Status\completed.png" />
+    <Resource Include="Images\Status\enabled.png" />
+    <Resource Include="Images\Status\in_checkout.png" />
+    <Resource Include="Images\Status\in_checkout_gray.png" />
+    <Resource Include="Images\Status\in_download.png" />
+    <Resource Include="Images\Status\in_flow.png" />
+    <Resource Include="Images\Status\in_flow_checkout.png" />
+    <Resource Include="Images\Status\in_flow_checkout_gray.png" />
+    <Resource Include="Images\Status\in_upload.png" />
+    <Resource Include="Images\Status\obsoleto-16.png" />
+    <Resource Include="Images\Status\obsoleto-24.png" />
+    <Resource Include="Images\Status\obsoleto-32.png" />
+    <Resource Include="Images\Status\obsoleto-48.png" />
+    <Resource Include="Images\Status\obsoleto-64.png" />
+    <Resource Include="Images\Status\obsoleto-cinza-16.png" />
+    <Resource Include="Images\Status\obsoleto-cinza-32.png" />
+    <Resource Include="Images\Status\obsoleto-cinza-64.png" />
+    <Resource Include="Images\Status\reativar-16.png" />
+    <Resource Include="Images\Status\reativar-32.png" />
+    <Resource Include="Images\Status\reativar-48.png" />
+    <Resource Include="Images\subfolders_16x.png" />
+    <Resource Include="Images\subfolders_32x.png" />
+    <Resource Include="Images\Synchronize_16xLG.png" />
+    <Resource Include="Images\Table_748.png" />
+    <Resource Include="Images\trashcan_16.png" />
+    <Resource Include="Images\TreeView\DirSync Server_16.png" />
+    <Resource Include="Images\TreeView\DirSync Server_48.png" />
+    <Resource Include="Images\TreeView\FolderOffline_7441.png" />
+    <Resource Include="Images\TreeView\PencilAngled_16xLG.png" />
+    <Resource Include="Images\TreeView\refresh_20.png" />
+    <Resource Include="Images\TreeView\star-icon-empty.png" />
+    <Resource Include="Images\TreeView\star-icon-gray.png" />
+    <Resource Include="Images\TreeView\star-icon.png" />
+    <Resource Include="Images\ViewDocument_16.png" />
+    <Resource Include="Images\ViewDocument_32.png" />
+    <Resource Include="Images\ViewDocument_48.png" />
+    <Resource Include="Images\working.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
