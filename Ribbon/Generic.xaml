@@ -2030,7 +2030,7 @@
                                                     Width="30">
                                                  <Button.Content>
 													<Grid>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,3,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,2,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 														<Border.RenderTransform>
 															<TransformGroup>
 																<ScaleTransform/>
@@ -2040,7 +2040,7 @@
 															</TransformGroup>
 														</Border.RenderTransform>
 													</Border>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,3" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,2" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 														<Border.RenderTransform>
 															<RotateTransform Angle="315"/>
 														</Border.RenderTransform>
@@ -2090,7 +2090,7 @@
                             <Setter TargetName="NonClientAreaBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="WindowState" Value="Maximized">
-                            <Setter TargetName="PART_Icon" Property="Margin" Value="16,8,0,0"/>
+                            <Setter TargetName="PART_Icon" Property="Margin" Value="12,0,0,0"/>
 							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
                             <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_RestoreWindowButton" Property="Visibility" Value="Visible"/>
@@ -2242,7 +2242,7 @@
                                         DockPanel.Dock="Left" 
                                         Focusable="False"/>
                             <primitives:RibbonTitlePanel x:Name="PART_TitlePanel">
-                                <Grid x:Name="QatTopHost">
+                                <Grid x:Name="QatTopHost" Height="29">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -2264,33 +2264,20 @@
                                               TextElement.Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="3,0"
-                                              MinHeight="{Binding Path=WindowCaptionHeight, Source={x:Static shell:SystemParameters2.Current}}"
+                                              Height="29"
                                               MinWidth="75"
                                               IsHitTestVisible="False">
                                     <ContentPresenter.Resources>
                                         <!-- Glowing effect around Title in Aero glass theme -->
                                         <DataTemplate DataType="{x:Type system:String}">
                                             <TextBlock x:Name="titleTextBlock" 
-                                                   Margin="0,-2,0,0"
+                                                   Margin="0"
                                                    Text="{TemplateBinding Content}"
                                                    TextTrimming="CharacterEllipsis"
+                                                   FontSize="12"
+                                                   VerticalAlignment="Center"
                                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
-                                            <DataTemplate.Triggers>
-                                                <MultiDataTrigger>
-                                                    <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{Binding Path=IsGlassEnabled, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                                        <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Ribbon}, Path=IsHostedInRibbonWindow}" Value="True" />
-                                                    </MultiDataTrigger.Conditions>
-                                                    <Setter TargetName="titleTextBlock" Property="TextBlock.Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="White" BlurRadius="5.0" ShadowDepth="0"/>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </MultiDataTrigger>
-                                                <DataTrigger Binding="{Binding Path=IsGlassEnabled, Source={x:Static shell:SystemParameters2.Current}}" Value="False">
-                                                    <Setter TargetName="titleTextBlock" Property="Margin" Value="0" />
-                                                    <Setter TargetName="titleTextBlock" Property="VerticalAlignment" Value="Center" />
-                                                </DataTrigger>
+                                            <DataTemplate.Triggers>                                                                                           
                                                 <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
                                                     <Setter TargetName="titleTextBlock" Property="Margin" Value="0,1,0,0" />
                                                 </DataTrigger>
@@ -2413,19 +2400,10 @@
 
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized" >
                             <Setter TargetName="RibbonGridFirstRow" Property="MinHeight" Value="33"/>
+                            <Setter TargetName="QatTopHost" Property="Margin" Value="0,2,0,0"/>
                         </DataTrigger>
                         
-                        <!-- The Title & separators that surround the QAT are drawn slightly differently in Aero. -->
-                        <DataTrigger Binding="{Binding Path=UxThemeName, Source={x:Static shell:SystemParameters2.Current}}" Value="Aero">
-                            <Setter TargetName="QatTopHost" Property="Margin" Value="0,-3,0,0"/>                           
-                        </DataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=UxThemeName, Source={x:Static shell:SystemParameters2.Current}}" Value="Aero"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="QatTopHost" Property="Margin" Value="10"/>
-                        </MultiDataTrigger>
+                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

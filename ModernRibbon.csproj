@@ -346,9 +346,6 @@
     <Resource Include="Images\working.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icon16-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\word.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

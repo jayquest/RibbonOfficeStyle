@@ -56,22 +56,22 @@
             </Ribbon.HelpPaneContent>
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
-                    <RibbonMenuButton ToolTip="Teste de tooltip da parada">
+                    <RibbonMenuButton Margin="1,0,1,0">
                         <RibbonMenuButton.SmallImageSource>
-                            <BitmapImage UriSource="Images/Folder.ico" DecodePixelWidth="16" DecodePixelHeight="16"/>
+                            <BitmapImage UriSource="Images/add.ico" DecodePixelWidth="16" DecodePixelHeight="16"/>
                         </RibbonMenuButton.SmallImageSource>
                     </RibbonMenuButton>
-                    <RibbonMenuButton ToolTip="Salvar a parada">
+                    <RibbonMenuButton Margin="1,0,1,0" ToolTip="Salvar a parada">
                         <RibbonMenuButton.SmallImageSource>
                             <BitmapImage UriSource="Images/Icons/download_16.png" DecodePixelWidth="16" DecodePixelHeight="16"/>
                         </RibbonMenuButton.SmallImageSource>
                     </RibbonMenuButton>
-                    <RibbonMenuButton>
+                    <RibbonMenuButton Margin="1,0,1,0">
                         <RibbonMenuButton.SmallImageSource>
                             <BitmapImage UriSource="Images/Icons/User_16.png" DecodePixelWidth="16" DecodePixelHeight="16"/>
                         </RibbonMenuButton.SmallImageSource>
                     </RibbonMenuButton>
-                    <RibbonMenuButton>
+                    <RibbonMenuButton Margin="1,0,1,0">
                         <RibbonMenuButton.SmallImageSource>
                             <BitmapImage UriSource="Images/add.ico" DecodePixelWidth="16" DecodePixelHeight="16"/>
                         </RibbonMenuButton.SmallImageSource>
