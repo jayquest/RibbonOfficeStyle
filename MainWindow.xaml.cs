@@ -24,6 +24,14 @@ namespace ModernRibbon
         public MainWindow()
         {
             InitializeComponent();
+            DwmDropShadow.DropShadowToWindow((Window)this);
+        }
+
+        private void RibbonWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var size = e.NewSize;
+
+            var newsize = size;
         }
     }
 }

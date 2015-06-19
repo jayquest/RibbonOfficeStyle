@@ -3,6 +3,7 @@
                     xmlns:classic="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
                     xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
                     xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=system.windows.controls.ribbon"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
@@ -1686,7 +1687,7 @@
     ==================================================================-->
 
     <Style x:Key="{x:Type RibbonQuickAccessToolBar}" TargetType="{x:Type RibbonQuickAccessToolBar}">
-        <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Height" Value="{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}" />
         <Setter Property="Margin" Value="3,-0.5,3,-1.4"/>
         <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.Background}" />
@@ -1813,18 +1814,371 @@
         RibbonWindow
     ==================================================================-->
 
+   
+
+    <ControlTemplate x:Key="RibbonWindowGlassTemplate"  TargetType="{x:Type RibbonWindow}">
+        <Grid>
+            <!-- We must place our template bindings on a separate Border since PART_RootContentPresenter extends into
+                                     non-client area, and setting BorderBrush or Background should only affect client area.
+                                     This deviates from Window, where setting Window.BorderThickness indents the Window.Content.
+                                  -->
+            <Border Name="PART_ClientAreaBorder"
+                                        Margin="{Binding Path=WindowNonClientFrameThickness, Source={x:Static shell:SystemParameters2.Current}}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"/>
+
+            <Border BorderThickness="{Binding Path=(WindowChrome.WindowChrome).ResizeBorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
+                <Grid>
+                    <Image Name="PART_Icon"
+                                               WindowChrome.IsHitTestVisibleInChrome="True"
+                                               Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Converter={StaticResource &#302;}}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Top"
+                                               Width="{Binding Path=SmallIconSize.Width, Source={x:Static shell:SystemParameters2.Current}}"
+                                               Height="{Binding Path=SmallIconSize.Height, Source={x:Static shell:SystemParameters2.Current}}"/>
+                    <AdornerDecorator>
+                        <ContentPresenter Name="PART_RootContentPresenter"/>
+                    </AdornerDecorator>
+                    <ResizeGrip x:Name="WindowResizeGrip"
+                                                    WindowChrome.ResizeGripDirection="BottomRight"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"
+                                                    Visibility="Collapsed"
+                                                    IsTabStop="false"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="PART_Icon" Property="Source" Value="/Images/Alert_16xLG.png"/>
+            </Trigger>
+            <Trigger Property="WindowState" Value="Maximized">
+                <Setter TargetName="PART_Icon" Property="Margin" Value="0,2,0,0"/>
+            </Trigger>
+            <MultiTrigger>
+                <!-- There may be perf implications b/c of the following conditions.  We may cause
+                                                                 an extra layout to happen when WindowState changes to Minimized and ResizeMode
+                                                                 is set to CanResizeWithGrip.
+                                                                 NavigationWindow's style requires the ResizeMode condition tag even though
+                                                                 Window's style already takes care of this condition.
+                                                                 -->
+                <MultiTrigger.Conditions>
+                    <Condition Property="Window.ResizeMode"
+                                                   Value="CanResizeWithGrip"/>
+                    <Condition Property="Window.WindowState"
+                                                   Value="Normal"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="WindowResizeGrip"
+                                            Property="Visibility"
+                                            Value="Visible"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
+
+    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" />
+
+    <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0"/>
+
     <primitives:RibbonWindowSmallIconConverter x:Key="&#302;"/>
-    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Ribbon},ResourceId=RibbonWindowStyle}" TargetType="{x:Type RibbonWindow}">
+    
+    <Style TargetType="{x:Type RibbonWindow}">
+        <Setter Property="WindowChrome.WindowChrome" Value="{DynamicResource ResourceKey=WindowChromeAeroWithGlass}" />
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="BorderThickness" Value="5"/>
-        <Setter Property="WindowChrome.WindowChrome">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
             <Setter.Value>
-                <WindowChrome  ResizeBorderThickness="1" />
+                <ControlTemplate TargetType="{x:Type RibbonWindow}">
+                    <ControlTemplate.Resources>
+
+                        <Style TargetType="{x:Type Button}" x:Key="&#201;">                           
+                            <Setter Property="Background" Value="Transparent"/>							
+                            <Setter Property="BorderBrush" Value="Gray"/>
+                            <Setter Property="Padding" Value="8,2"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">                                        
+                                        <Grid>
+                                            <Border CornerRadius="0" BorderBrush="{TemplateBinding BorderBrush}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    Width="{TemplateBinding Width}"
+                                                    Height="{TemplateBinding Height}">                                                
+                                            </Border>
+                                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="False"/>                                                    
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Background" Value="Transparent"/>
+												<Setter Property="BorderBrush" Value="LightGray"/>
+                                            </MultiDataTrigger>
+											<MultiDataTrigger>
+												<MultiDataTrigger.Conditions>													
+													<Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
+													<Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+												</MultiDataTrigger.Conditions>	
+                                                <Setter Property="Background" Value="#22005588"/>                                                
+												<Setter Property="BorderBrush" Value="#BB005588"/>                                            
+											</MultiDataTrigger>
+											<MultiDataTrigger>
+												<MultiDataTrigger.Conditions>													
+													<Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
+													<Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}" Value="True"/>                                          
+												</MultiDataTrigger.Conditions>
+                                                <Setter Property="Background" Value="#33005588"/>
+												<Setter Property="BorderBrush" Value="#FF005588"/>
+                                            </MultiDataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style BasedOn="{StaticResource &#201;}" TargetType="{x:Type Button}" x:Key="&#212;">
+                            <Setter Property="Padding" Value="8,6,8,2"/>
+                        </Style>
+
+                        <Style BasedOn="{StaticResource &#201;}" TargetType="{x:Type Button}" x:Key="&#213;">
+                            <Setter Property="Padding" Value="7,1,8,1"/>
+                        </Style>
+
+                        <SolidColorBrush x:Key="&#218;" Color="#FFE2E6EF"/>
+                        <SolidColorBrush x:Key="&#219;" Color="#FFE9ECF3"/>
+
+                        <SolidColorBrush x:Key="&#220;" Color="#FF4C4C4C"/>
+
+                        <LinearGradientBrush x:Key="&#221;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#02FFFFFF" Offset="0.0"/>
+                            <GradientStop Color="#FF4C4C4C" Offset="0.33"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#222;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FFC1EEF5" Offset="0.0"/>
+                            <GradientStop Color="#FF83DEF4" Offset="0.2"/>
+                            <GradientStop Color="#FF42CFF2" Offset="0.5"/>
+                            <GradientStop Color="#FF28CFE4" Offset="0.95"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#223;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FFFFFFFF" Offset="0.0"/>
+                            <GradientStop Color="#FFFAFAFA" Offset="0.47"/>
+                            <GradientStop Color="#FFE9E9E9" Offset="0.47"/>
+                            <GradientStop Color="#FFD7D7D7" Offset="1"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#224;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#3000365D" Offset="0.0"/>
+                            <GradientStop Color="#00000000" Offset="1.0"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#225;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#1D001A2A" Offset="0.0"/>
+                            <GradientStop Color="#00000000" Offset="1.0"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#226;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#00FFFFFF" Offset="0.0"/>
+                            <GradientStop Color="#00FFFFFF" Offset="0.30"/>
+                            <GradientStop Color="#70FFFFFF" Offset="0.85"/>
+                            <GradientStop Color="#80FFFFFF" Offset="0.98"/>
+                            <GradientStop Color="#70FFFFFF" Offset="0.99"/>
+                            <GradientStop Color="#00FFFFFF" Offset="1.0"/>
+                        </LinearGradientBrush>
+
+                        <LinearGradientBrush x:Key="&#227;" StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#16000000" Offset="0.0"/>
+                            <GradientStop Color="#00000000" Offset="0.33"/>
+                        </LinearGradientBrush>
+
+                    </ControlTemplate.Resources>
+
+                    <Grid d:DesignWidth="800" d:DesignHeight="400">
+
+                        <Border Name="NonClientAreaBorder"
+                                BorderThickness="1,30,1,1"
+								CornerRadius="0"
+                                BorderBrush="#FF2B579A">
+                            <Border Name="PART_ClientAreaBorder"
+									CornerRadius="0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"/>
+                        </Border>
+
+                        <StackPanel>
+                            <!-- The title panel has a shadow gradient on top of it so that it is darker than the rest of the window. -->
+                            <Border Name="TitlePanelOverlay"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding Background}"
+									CornerRadius="0"
+                                    Height="30"/>
+
+
+                        </StackPanel>
+
+                        <Border Name="OuterBorder"
+                                BorderThickness="1"
+                                BorderBrush="#FF2B579A"								
+                                CornerRadius="0">
+                            <Grid>
+                                <Border Name="WindowHighlightBorder"
+                                        BorderThickness="1,1,0,0"
+                                        BorderBrush="White"
+                                        CornerRadius="0">
+
+                                    <Grid Name="TitleGrid" VerticalAlignment="Top"
+                                          Margin="1">
+
+                                        <Image Name="PART_Icon"
+                                               WindowChrome.IsHitTestVisibleInChrome="True"
+                                               Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Converter={StaticResource &#302;}}"
+                                               HorizontalAlignment="Left"
+                                               Width="{Binding Path=SmallIconSize.Width, Source={x:Static shell:SystemParameters2.Current}}"
+                                               Height="30"
+											   Margin="10,2,0,0"/>
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Right"
+                                                    Height="30">
+                                            <Button Name="PART_MinimizeWindowButton" Focusable="False"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Command="SystemCommands.MinimizeWindowCommand"
+													
+                                                    Style="{StaticResource &#201;}"
+                                                    Width="28">
+                                                <Button.Content>
+                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="2" Width="9" BorderBrush="{Binding Parent.BorderBrush, Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="1" VerticalAlignment="Center" Margin="0,6,0,0"/>
+												</Button.Content>
+                                            </Button>
+                                            <Button Name="PART_MaximizeWindowButton" Focusable="False"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Command="SystemCommands.MaximizeWindowCommand"
+													
+                                                    Style="{StaticResource &#201;}"                                                    
+                                                    Width="28">
+                                                 <Button.Content>
+                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="10" Width="12" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" />
+												</Button.Content>
+                                            </Button>
+                                            <Button Name="PART_RestoreWindowButton" Focusable="False"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Command="SystemCommands.RestoreWindowCommand"
+                                                    Style="{StaticResource &#201;}"
+													Visibility="Collapsed"
+                                                    Width="28"
+                                                    >
+                                                 <Button.Content>
+													<Grid>
+														<Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="0,2,1,0" VerticalAlignment="Center" Margin="4,0,0,3"/>	
+														<Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="0,2,0,0"/>															
+													</Grid>                                                    
+												</Button.Content>
+                                            </Button>
+                                            <Button Name="PART_CloseWindowButton" Focusable="False"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Command="SystemCommands.CloseWindowCommand"
+                                                    Style="{StaticResource &#201;}"
+                                                    
+                                                    Width="30">
+                                                 <Button.Content>
+													<Grid>
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,2,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+														<Border.RenderTransform>
+															<TransformGroup>
+																<ScaleTransform/>
+																<SkewTransform/>
+																<RotateTransform Angle="45"/>
+																<TranslateTransform/>
+															</TransformGroup>
+														</Border.RenderTransform>
+													</Border>
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,2" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+														<Border.RenderTransform>
+															<RotateTransform Angle="315"/>
+														</Border.RenderTransform>
+													</Border>
+													</Grid>
+												</Button.Content>
+                                            </Button>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </Border>
+
+                                <Border Name="WindowShadowBorder"
+                                        BorderThickness="0,0,0,0"
+										Margin="0"
+                                        BorderBrush="{StaticResource &#222;}"
+                                        CornerRadius="0"/>
+                            </Grid>
+                        </Border>
+
+                        <Border BorderThickness="{Binding Path=(WindowChrome.WindowChrome).ResizeBorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Grid>
+                                <AdornerDecorator>
+                                    <ContentPresenter Name="PART_RootContentPresenter"/>
+                                </AdornerDecorator>
+                                <ResizeGrip x:Name="WindowResizeGrip"
+                                        WindowChrome.ResizeGripDirection="BottomRight"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Visibility="Collapsed"
+                                        IsTabStop="false"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="False">
+                            <!-- Gray out the outer border. -->
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="LightGray"/>
+
+                            <!-- The shadow gradient over the title panel becomes less pronounced. -->
+                            <!--<Setter TargetName="TitlePanelOverlay" Property="Background" Value="{StaticResource &#225;}"/>-->
+
+                            <!-- Gray out the window highlighting effect. -->
+                            <Setter TargetName="WindowHighlightBorder" Property="BorderBrush" Value="{StaticResource &#219;}"/>
+                            <Setter TargetName="WindowShadowBorder" Property="BorderBrush" Value="{StaticResource &#219;}"/>
+                            <Setter TargetName="NonClientAreaBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
+                            <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_RestoreWindowButton" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="Source" Value="/Images/Alert_16xLG.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <!-- There may be perf implications b/c of the following conditions.  We may cause
+                                                         an extra layout to happen when WindowState changes to Minimized and ResizeMode
+                                                         is set to CanResizeWithGrip.
+                                                         NavigationWindow's style requires the ResizeMode condition tag even though
+                                                         Window's style already takes care of this condition.
+                                                         -->
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Window.ResizeMode"
+                                           Value="CanResizeWithGrip"/>
+                                <Condition Property="Window.WindowState"
+                                           Value="Normal"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="WindowResizeGrip"
+                                    Property="Visibility"
+                                    Value="Visible"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
-        </Setter>
+        </Setter>       
     </Style>
 
+   
     <!--=================================================================
         Ribbon
     ==================================================================-->
@@ -1838,10 +2192,11 @@
         <GradientStop Color="#20FFFFFF" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <Style x:Key="{x:Type Ribbon}"  TargetType="{x:Type Ribbon}">
+    <Style TargetType="{x:Type Ribbon}">
         <Style.Resources>
             <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">Fade</PopupAnimation>
         </Style.Resources>
+		<Setter Property="Margin" Value="-3,8,-3,0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{StaticResource &#200;}" />
@@ -1905,7 +2260,7 @@
                             <Border x:Name="groupsBorder"
                                     Background="{StaticResource &#205;}" 
                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="1,0,1,1"
+                                    BorderThickness="0,0,0,1"
                                     Height="{StaticResource &#211;}"
                                     SnapsToDevicePixels="True">
                                 <Border BorderThickness="0,0,0,1" Margin="0,0,0,1" BorderBrush="{StaticResource &#204;}" SnapsToDevicePixels="True">
@@ -2018,7 +2373,7 @@
                                 </ContentPresenter>
                                 <RibbonContextualTabGroupItemsControl x:Name="PART_ContextualTabGroupItemsControl" 
                                                                                IsHitTestVisible="True"
-                                                                               shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                                                               WindowChrome.IsHitTestVisibleInChrome="True"
                                                                                HorizontalAlignment="Center" />
                             </primitives:RibbonTitlePanel>
                         </DockPanel>
@@ -4534,11 +4889,12 @@
                         BorderThickness="1"
                         SnapsToDevicePixels="True"/>
                 <Border Name="SeparatorBorder" Background="{TemplateBinding BorderBrush}"
+						Margin="0,1,0,1"
                         Grid.Column="1"
-                        Grid.RowSpan="3"
-                        Height="75"
+                        Grid.RowSpan="3"          
+						Opacity="0.7"              
                         Width="1"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Stretch"
                         SnapsToDevicePixels="True" />
                 <Border Margin="2,1,2,0" Padding="3,0,3,0">
                     <Grid>

@@ -1,12 +1,19 @@
 ﻿<RibbonWindow x:Class="ModernRibbon.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="957">
+        Height="383" Width="1152" SizeChanged="RibbonWindow_SizeChanged" Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}">
+	<RibbonWindow.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Ribbon/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</RibbonWindow.Resources>	   		
     <Grid>
-        <Ribbon Name="Ribbon" VerticalAlignment="Stretch" Margin="0" IsDropDownOpen="True"    
+        <Ribbon Name="Ribbon" VerticalAlignment="Stretch" IsDropDownOpen="True"    
                 Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
                 FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 
-                MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4">            
+                MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4" >
             <Ribbon.HelpPaneContent>
                 <Menu Height="23" VerticalContentAlignment="Stretch" HorizontalAlignment="Left">
                     <MenuItem Height="23">
@@ -22,7 +29,7 @@
                                     <Image Source="/Images/Icons/Client_16.png" Height="16" />
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="Empresa logada" FontWeight="Bold" FontStyle="Italic" IsEnabled="False"/>                                                    
+                            <MenuItem Header="Empresa logada" FontWeight="Bold" FontStyle="Italic" IsEnabled="False"/>
                             <MenuItem Header="change Pass" >
                                 <MenuItem.Icon>
                                     <Image Source="/Images/password_16.png" Height="16" />
@@ -33,12 +40,12 @@
                                     <Image Source="/Images/Icons/User Services_16.png" Height="16" />
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="logoff"   >
+                            <MenuItem Header="logoff">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/Icons/Output_16xLG.png" Height="16" />
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="exit"   >
+                            <MenuItem Header="exit">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/Icons/Symbols_Critical_16xLG.png" Height="16" />
                                 </MenuItem.Icon>
@@ -72,7 +79,6 @@
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
             <RibbonTab Header="Start" KeyTip="I">
-                <!-- Home  group-->
                 <RibbonGroup Header="Crud New">
 
                     <RibbonButton x:Name="SendFiles" Label="send File" KeyTip="V">
@@ -92,7 +98,7 @@
                         </RibbonMenuButton.SmallImageSource>
                         <RibbonMenuButton.LargeImageSource>
                             <BitmapImage UriSource="/Images/arrow-claro.png" DecodePixelWidth="132" Rotation="Rotate180" />
-                        </RibbonMenuButton.LargeImageSource>                     
+                        </RibbonMenuButton.LargeImageSource>
                     </RibbonMenuButton>
                 </RibbonGroup>
 
@@ -181,9 +187,8 @@
                         </RibbonMenuButton.SmallImageSource>
                         <RibbonMenuButton.LargeImageSource>
                             <BitmapImage UriSource="/Images/arrow-claro.png" DecodePixelWidth="132"></BitmapImage>
-                        </RibbonMenuButton.LargeImageSource>                       
+                        </RibbonMenuButton.LargeImageSource>
                     </RibbonMenuButton>
-
                 </RibbonGroup>
                 <RibbonGroup>
                     <RibbonButton Name="UpdateTree" Label="update Folders" >
@@ -194,11 +199,8 @@
                             <BitmapImage UriSource="/Images/TreeView/DirSync Server_48.png" DecodePixelWidth="32" />
                         </RibbonButton.LargeImageSource>
                     </RibbonButton>
-                </RibbonGroup>
-
-                <!-- administração-->
-            </RibbonTab>
-            <!-- Ribbon Tab #2: -->
+                </RibbonGroup>                
+            </RibbonTab>            
             <RibbonTab Header="Administration" KeyTip="I">
                 <RibbonGroup Header="Cadastros" >
                     <RibbonButton Label="companies" Name="CompanyCrud">
@@ -274,12 +276,162 @@
                 </RibbonGroup>
 
             </RibbonTab>
-            <!-- Ribbon Tab #3: -->
+            <RibbonTab Header="Administration" KeyTip="I">
+                <RibbonGroup Header="Cadastros" >
+                    <RibbonButton Label="companies">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Client_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Client_48.png" DecodePixelHeight="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="repositories" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Environment_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Environment_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="document Types" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Document_Type_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Document_Type_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="additional Fields" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/additional_fields_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/additional_fields_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="lists" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/List_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/List_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="permissions">
+                    <RibbonButton Label="roles">
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/roles_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton  Label="groups">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Users_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Users_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="users">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/User_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/User_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="ribbonGroupOptions" >
+                    <RibbonButton Label="system Settings">
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/configuration_32.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+
+            </RibbonTab>
+            <RibbonTab Header="Administration" KeyTip="I">
+                <RibbonGroup Header="Cadastros" >
+                    <RibbonButton Label="companies" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Client_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Client_48.png" DecodePixelHeight="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="repositories" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Environment_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Environment_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="document Types" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Document_Type_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Document_Type_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="additional Fields">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/additional_fields_48.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/additional_fields_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="lists" >
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/List_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/List_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="permissions">
+                    <RibbonButton  Label="roles">
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/roles_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton  Label="groups">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Users_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/Users_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                    <RibbonButton Label="users">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="/Images/Icons/User_16.png" DecodePixelWidth="16" />
+                        </RibbonButton.SmallImageSource>
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/User_48.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="ribbonGroupOptions" >
+                    <RibbonButton Label="system Settings">
+                        <RibbonButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Icons/configuration_32.png" DecodePixelWidth="32" />
+                        </RibbonButton.LargeImageSource>
+                    </RibbonButton>
+                </RibbonGroup>
+
+            </RibbonTab>
+           
             <RibbonTab Header="search Tab" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
-                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="{x:Null}"></RibbonRadioButton>
+                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="False"></RibbonRadioButton>
                     <RibbonRadioButton Label="subfolders" SmallImageSource="/Images/subfolders_16x.png" IsChecked="False"></RibbonRadioButton>
                 </RibbonGroup>
                 <RibbonGroup Header="search Fields">
@@ -291,16 +443,64 @@
                     <RibbonMenuButton  Label="select Fields" >
                         <RibbonMenuButton.LargeImageSource>
                             <BitmapImage UriSource="/Images/Fields_32x.png" />
-                        </RibbonMenuButton.LargeImageSource>                        
+                        </RibbonMenuButton.LargeImageSource>
                     </RibbonMenuButton>
                 </RibbonGroup>
                 <RibbonGroup>
                     <RibbonButton Name="CloseSearch" Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
+			
+            <RibbonTab Header="search Tab 3" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
+
+                <RibbonGroup Header="local Folder" >
+                    <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
+                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="False"></RibbonRadioButton>
+                    <RibbonRadioButton Label="subfolders" SmallImageSource="/Images/subfolders_16x.png" IsChecked="False"></RibbonRadioButton>
+                </RibbonGroup>
+                <RibbonGroup Header="search Fields">
+                    <RibbonToggleButton Label="searchOnContent" IsChecked="True">
+                        <RibbonToggleButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Documents_32x.png" />
+                        </RibbonToggleButton.LargeImageSource>
+                    </RibbonToggleButton>
+                    <RibbonMenuButton  Label="select Fields" >
+                        <RibbonMenuButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Fields_32x.png" />
+                        </RibbonMenuButton.LargeImageSource>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+			
+            <RibbonTab Header="search Tab 2" KeyTip="L" Margin="0,-1,0,1">
+
+                <RibbonGroup Header="local Folder" >
+                    <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
+                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="False"></RibbonRadioButton>
+                    <RibbonRadioButton Label="subfolders" SmallImageSource="/Images/subfolders_16x.png" IsChecked="False"></RibbonRadioButton>
+                </RibbonGroup>
+                <RibbonGroup Header="search Fields">
+                    <RibbonToggleButton Label="searchOnContent" IsChecked="True">
+                        <RibbonToggleButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Documents_32x.png" />
+                        </RibbonToggleButton.LargeImageSource>
+                    </RibbonToggleButton>
+                    <RibbonMenuButton  Label="select Fields" >
+                        <RibbonMenuButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Fields_32x.png" />
+                        </RibbonMenuButton.LargeImageSource>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
 
             <Ribbon.ContextualTabGroups>
-                <RibbonContextualTabGroup Header="search Options" Visibility="Visible" Background="#FF53B0F0" />
+                <RibbonContextualTabGroup Header="search Options" Visibility="Visible" Background="#FF53B0F0" />			
             </Ribbon.ContextualTabGroups>
         </Ribbon>
     </Grid>
