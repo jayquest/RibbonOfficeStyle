@@ -78,7 +78,7 @@
                     </RibbonMenuButton>
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
-            <RibbonTab Header="Start" KeyTip="I">
+            <RibbonTab Header="START" KeyTip="I">
                 <RibbonGroup Header="Crud New">
 
                     <RibbonButton x:Name="SendFiles" Label="send File" KeyTip="V">
@@ -201,7 +201,7 @@
                     </RibbonButton>
                 </RibbonGroup>                
             </RibbonTab>            
-            <RibbonTab Header="Administration" KeyTip="I">
+            <RibbonTab Header="ADMINISTRATION" KeyTip="I">
                 <RibbonGroup Header="Cadastros" >
                     <RibbonButton Label="companies" Name="CompanyCrud">
                         <RibbonButton.SmallImageSource>
@@ -276,7 +276,7 @@
                 </RibbonGroup>
 
             </RibbonTab>
-            <RibbonTab Header="Administration" KeyTip="I">
+            <RibbonTab Header="REVIEW" KeyTip="I">
                 <RibbonGroup Header="Cadastros" >
                     <RibbonButton Label="companies">
                         <RibbonButton.SmallImageSource>
@@ -351,7 +351,7 @@
                 </RibbonGroup>
 
             </RibbonTab>
-            <RibbonTab Header="Administration" KeyTip="I">
+            <RibbonTab Header="VIEW" KeyTip="I">
                 <RibbonGroup Header="Cadastros" >
                     <RibbonButton Label="companies" >
                         <RibbonButton.SmallImageSource>
@@ -427,7 +427,7 @@
 
             </RibbonTab>
            
-            <RibbonTab Header="search Tab" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
+            <RibbonTab Header="SEARCH TAB" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
@@ -451,7 +451,7 @@
                 </RibbonGroup>
             </RibbonTab>
 			
-            <RibbonTab Header="search Tab 3" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
+            <RibbonTab Header="CONFIGURATIONS" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
@@ -475,7 +475,7 @@
                 </RibbonGroup>
             </RibbonTab>
 			
-            <RibbonTab Header="search Tab 2" KeyTip="L" Margin="0,-1,0,1">
+            <RibbonTab Header="CONFIGS" KeyTip="L" Margin="0,-1,0,1">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>

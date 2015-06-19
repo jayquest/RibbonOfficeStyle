@@ -378,9 +378,9 @@
     </LinearGradientBrush>
 
     <Style x:Key="{x:Type RibbonTabHeader}"  TargetType="{x:Type RibbonTabHeader}">
-        <Setter Property="Margin" Value="0,0,1,0" />
+        <Setter Property="Margin" Value="0,0,2,0" />
         <Setter Property="Padding" Value="9,1,9,1" />
-        <Setter Property="MinHeight" Value="23"/>
+        <Setter Property="Height" Value="24"/>
         <Setter Property="Background" Value="white" />
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="CheckedBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.BorderBrush}"/>
@@ -406,8 +406,8 @@
                                 BorderThickness="1,1,1,2"
                                 CornerRadius="0"
                                 Padding="{TemplateBinding Padding}">
-                                <ContentPresenter ContentSource="Content" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            </Border>
+                                <ContentPresenter x:Name="ContentPresenter"  ContentSource="Content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+							</Border>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -1813,68 +1813,7 @@
     <!--=================================================================
         RibbonWindow
     ==================================================================-->
-
    
-
-    <ControlTemplate x:Key="RibbonWindowGlassTemplate"  TargetType="{x:Type RibbonWindow}">
-        <Grid>
-            <!-- We must place our template bindings on a separate Border since PART_RootContentPresenter extends into
-                                     non-client area, and setting BorderBrush or Background should only affect client area.
-                                     This deviates from Window, where setting Window.BorderThickness indents the Window.Content.
-                                  -->
-            <Border Name="PART_ClientAreaBorder"
-                                        Margin="{Binding Path=WindowNonClientFrameThickness, Source={x:Static shell:SystemParameters2.Current}}"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"/>
-
-            <Border BorderThickness="{Binding Path=(WindowChrome.WindowChrome).ResizeBorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
-                <Grid>
-                    <Image Name="PART_Icon"
-                                               WindowChrome.IsHitTestVisibleInChrome="True"
-                                               Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Converter={StaticResource &#302;}}"
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Top"
-                                               Width="{Binding Path=SmallIconSize.Width, Source={x:Static shell:SystemParameters2.Current}}"
-                                               Height="{Binding Path=SmallIconSize.Height, Source={x:Static shell:SystemParameters2.Current}}"/>
-                    <AdornerDecorator>
-                        <ContentPresenter Name="PART_RootContentPresenter"/>
-                    </AdornerDecorator>
-                    <ResizeGrip x:Name="WindowResizeGrip"
-                                                    WindowChrome.ResizeGripDirection="BottomRight"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Bottom"
-                                                    Visibility="Collapsed"
-                                                    IsTabStop="false"/>
-                </Grid>
-            </Border>
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="Icon" Value="{x:Null}">
-                <Setter TargetName="PART_Icon" Property="Source" Value="/Images/Alert_16xLG.png"/>
-            </Trigger>
-            <Trigger Property="WindowState" Value="Maximized">
-                <Setter TargetName="PART_Icon" Property="Margin" Value="0,2,0,0"/>
-            </Trigger>
-            <MultiTrigger>
-                <!-- There may be perf implications b/c of the following conditions.  We may cause
-                                                                 an extra layout to happen when WindowState changes to Minimized and ResizeMode
-                                                                 is set to CanResizeWithGrip.
-                                                                 NavigationWindow's style requires the ResizeMode condition tag even though
-                                                                 Window's style already takes care of this condition.
-                                                                 -->
-                <MultiTrigger.Conditions>
-                    <Condition Property="Window.ResizeMode"
-                                                   Value="CanResizeWithGrip"/>
-                    <Condition Property="Window.WindowState"
-                                                   Value="Normal"/>
-                </MultiTrigger.Conditions>
-                <Setter TargetName="WindowResizeGrip"
-                                            Property="Visibility"
-                                            Value="Visible"/>
-            </MultiTrigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
@@ -2001,7 +1940,7 @@
                     <Grid d:DesignWidth="800" d:DesignHeight="400">
 
                         <Border Name="NonClientAreaBorder"
-                                BorderThickness="1,30,1,1"
+                                BorderThickness="1,29,1,1"
 								CornerRadius="0"
                                 BorderBrush="#FF2B579A">
                             <Border Name="PART_ClientAreaBorder"
@@ -2017,7 +1956,7 @@
                                     VerticalAlignment="Top"
                                     Background="{TemplateBinding Background}"
 									CornerRadius="0"
-                                    Height="30"/>
+                                    Height="29"/>
 
 
                         </StackPanel>
@@ -2028,7 +1967,7 @@
                                 CornerRadius="0">
                             <Grid>
                                 <Border Name="WindowHighlightBorder"
-                                        BorderThickness="1,1,0,0"
+                                        BorderThickness="0,0,0,0"
                                         BorderBrush="White"
                                         CornerRadius="0">
 
@@ -2040,12 +1979,15 @@
                                                Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Converter={StaticResource &#302;}}"
                                                HorizontalAlignment="Left"
                                                Width="{Binding Path=SmallIconSize.Width, Source={x:Static shell:SystemParameters2.Current}}"
-                                               Height="30"
-											   Margin="10,2,0,0"/>
+                                               Height="16"											  
+											   Margin="9,1,0,1"/>
 
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Right"
-                                                    Height="30">
+													VerticalAlignment="Top"
+                                                    Height="22"
+													Margin="0,2,0,2"
+													>
                                             <Button Name="PART_MinimizeWindowButton" Focusable="False"
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                                     Command="SystemCommands.MinimizeWindowCommand"
@@ -2063,7 +2005,7 @@
                                                     Style="{StaticResource &#201;}"                                                    
                                                     Width="28">
                                                  <Button.Content>
-                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="10" Width="12" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" />
+                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="10" Width="12" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,3,1,1" VerticalAlignment="Center" />
 												</Button.Content>
                                             </Button>
                                             <Button Name="PART_RestoreWindowButton" Focusable="False"
@@ -2088,7 +2030,7 @@
                                                     Width="30">
                                                  <Button.Content>
 													<Grid>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,2,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,3,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 														<Border.RenderTransform>
 															<TransformGroup>
 																<ScaleTransform/>
@@ -2098,7 +2040,7 @@
 															</TransformGroup>
 														</Border.RenderTransform>
 													</Border>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,2" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,3" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 														<Border.RenderTransform>
 															<RotateTransform Angle="315"/>
 														</Border.RenderTransform>
@@ -2122,7 +2064,7 @@
                         <Border BorderThickness="{Binding Path=(WindowChrome.WindowChrome).ResizeBorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
                             <Grid>
                                 <AdornerDecorator>
-                                    <ContentPresenter Name="PART_RootContentPresenter"/>
+                                    <ContentPresenter Name="PART_RootContentPresenter" Margin="0,-4,0,0"/>
                                 </AdornerDecorator>
                                 <ResizeGrip x:Name="WindowResizeGrip"
                                         WindowChrome.ResizeGripDirection="BottomRight"
@@ -2148,12 +2090,15 @@
                             <Setter TargetName="NonClientAreaBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="PART_Icon" Property="Margin" Value="16,8,0,0"/>
 							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
                             <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_RestoreWindowButton" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="Icon" Value="{x:Null}">
-                            <Setter TargetName="PART_Icon" Property="Source" Value="/Images/Alert_16xLG.png"/>
+                            <Setter TargetName="PART_Icon" Property="Source" Value="/Images/Icon16-5.png"/>
+                            <Setter TargetName="PART_Icon" Property="RenderOptions.EdgeMode" Value="Unspecified"/>
+                            <Setter TargetName="PART_Icon" Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
                         </Trigger>
                         <MultiTrigger>
                             <!-- There may be perf implications b/c of the following conditions.  We may cause
@@ -2196,7 +2141,7 @@
         <Style.Resources>
             <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">Fade</PopupAnimation>
         </Style.Resources>
-		<Setter Property="Margin" Value="-3,8,-3,0" />
+		<Setter Property="Margin" Value="-3,0,-3,0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{StaticResource &#200;}" />
@@ -2225,7 +2170,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" MinHeight="29" x:Name="RibbonGridFirstRow" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -2237,7 +2182,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"/>
 
                         <!-- Popup hosting the groups when IsMinimized=true -->
-                        <Border Grid.ColumnSpan="3" Grid.Row="1">
+                        <Border Grid.ColumnSpan="3" Grid.Row="1" MinHeight="24">
                             <Popup x:Name="PART_ITEMSPRESENTERPOPUP" 
                                AllowsTransparency="True" 
                                IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
@@ -2281,7 +2226,7 @@
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="0,0,0,1"
                                   Visibility="Collapsed" />
-                        <DockPanel Grid.Column="0" Grid.ColumnSpan="3" Height="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowCaptionHeight}" LastChildFill="True">
+                        <DockPanel Grid.Column="0" Grid.ColumnSpan="3" LastChildFill="True" Height="29">
                             <!-- This makes sure that the title and QAT does not overlap the close minimize and restore buttons. -->
                             <ContentControl x:Name="windowButtonPlaceHolder" 
                                         Width="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowCaptionButtonsLocation.Width}" 
@@ -2304,28 +2249,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border x:Name="QatTopHostLeftBorder"
-                                        Grid.Column="0"
-                                        Margin="8,4,0,1"
-                                        Width="3"
-                                        Background="#77222222"
-                                        BorderBrush="#66CCCCCC"
-                                        BorderThickness="1,0,1,0.9"
-                                        CornerRadius="0"/>
-
                                     <ContentPresenter x:Name="QatTopHostContentPresenter" 
                                                   Grid.Column="1"
                                                   Content="{TemplateBinding QuickAccessToolBar}" 
                                                   IsHitTestVisible="True"/>
-
-                                    <Border x:Name="QatTopHostRightBorder"
-                                        Grid.Column="2"
-                                        Margin="0,2,1,2"
-                                        Width="3"
-                                        Background="#77222222"
-                                        BorderBrush="#66CCCCCC"
-                                        BorderThickness="1,0,1,0.9"
-                                        CornerRadius="0"/>
 
                                 </Grid>
                                 <ContentPresenter x:Name="PART_TitleHost"
@@ -2374,12 +2301,12 @@
                                 <RibbonContextualTabGroupItemsControl x:Name="PART_ContextualTabGroupItemsControl" 
                                                                                IsHitTestVisible="True"
                                                                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                                                               HorizontalAlignment="Center" />
+                                                                               HorizontalAlignment="Center" Margin="0,-20,0,0"/>
                             </primitives:RibbonTitlePanel>
                         </DockPanel>
 
                         <!-- Application Menu -->
-                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
+                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Margin="0,0,4,0" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
 
                         <RibbonTabHeaderItemsControl 
                             x:Name="TabHeaderItemsControl" 
@@ -2442,7 +2369,6 @@
                         </Trigger>
                         <Trigger Property="WindowIconVisibility" Value="Collapsed">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="windowIconPadding"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -2456,7 +2382,6 @@
                             <Setter TargetName="BackgroundBorder" Property="Grid.RowSpan" Value="4" />
                             <Setter TargetName="titleBarBackground" Property="Visibility" Value="Visible" />
                             <Setter TargetName="windowIconPadding" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter Property="BorderThickness" Value="0" TargetName="BackgroundBorder"/>
@@ -2483,28 +2408,16 @@
                             <Setter TargetName="titleBarBackground" Property="Background" Value="Transparent"/>
                             <Setter TargetName="titleBarBackground" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
                             <Setter TargetName="CollapsedPopupBackgroundBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                            <Setter TargetName="PART_ITEMSPRESENTERPOPUP" Property="PopupAnimation" Value="None" />
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Margin" Value="10,1,2,2"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Width" Value="1"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="BorderThickness" Value="0"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="Margin" Value="0,1,2,2"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="Width" Value="1"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="BorderThickness" Value="0"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                            <Setter TargetName="PART_ITEMSPRESENTERPOPUP" Property="PopupAnimation" Value="None" />                           
                         </DataTrigger>
 
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized" >
+                            <Setter TargetName="RibbonGridFirstRow" Property="MinHeight" Value="33"/>
+                        </DataTrigger>
+                        
                         <!-- The Title & separators that surround the QAT are drawn slightly differently in Aero. -->
                         <DataTrigger Binding="{Binding Path=UxThemeName, Source={x:Static shell:SystemParameters2.Current}}" Value="Aero">
-                            <Setter TargetName="QatTopHost" Property="Margin" Value="0,-3,0,0"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Margin" Value="3,3,0,2"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="Background" Value="#81444444"/>
-                            <Setter TargetName="QatTopHostLeftBorder" Property="BorderBrush" Value="#69EEEEEE"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="Margin" Value="0,3,1,2"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="Background" Value="#81444444"/>
-                            <Setter TargetName="QatTopHostRightBorder" Property="BorderBrush" Value="#69EEEEEE"/>
+                            <Setter TargetName="QatTopHost" Property="Margin" Value="0,-3,0,0"/>                           
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -7739,7 +7652,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonTab}">
-                    <Grid x:Name="MainGrid" Visibility="{TemplateBinding IsSelected, Converter={StaticResource &#212;}}" ClipToBounds="True">
+                    <Grid x:Name="MainGrid" Visibility="{TemplateBinding IsSelected, Converter={StaticResource &#212;}}" ClipToBounds="True" Margin="0,-1,0,0">
                         <Line x:Name="OuterLeftLine"
                           StrokeThickness="2" 
                           Stroke="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContextualTabGroup.Background}"
@@ -8124,7 +8037,7 @@
         <Setter Property="Background" Value="{StaticResource &#215;}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Height" Value="23" />
+        <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="56" />
         <Setter Property="Template">
             <Setter.Value>
