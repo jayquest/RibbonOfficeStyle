@@ -2166,7 +2166,7 @@
                         </DockPanel>
 
                         <!-- Application Menu -->
-                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Margin="0,0,4,0" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
+                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Margin="0,0,0,0" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
 
                         <RibbonTabHeaderItemsControl 
                             x:Name="TabHeaderItemsControl" 
@@ -7580,7 +7580,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonTabHeaderItemsControl}">
-                    <Border x:Name="MainBorder" Background="{TemplateBinding Background}">
+                    <Border x:Name="MainBorder" Background="{TemplateBinding Background}" Margin="4,0,0,0">
                         <ScrollViewer x:Name="ScrollViewer" Style="{StaticResource &#296;}">
                             <ItemsPresenter x:Name="ItemsPresenter"/>
                         </ScrollViewer>
