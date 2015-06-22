@@ -426,8 +426,8 @@
                 </RibbonGroup>
 
             </RibbonTab>
-           
-            <RibbonTab Header="SEARCH TAB" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
+
+            <RibbonTab Header="SEARCH TAB" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="DRAWING TOOLS">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
@@ -450,8 +450,8 @@
                     <RibbonButton Name="CloseSearch" Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
-			
-            <RibbonTab Header="CONFIGURATIONS" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="search Options">
+
+            <RibbonTab Header="CONFIGURATIONS" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="DRAWING TOOLS">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
@@ -500,7 +500,7 @@
             </RibbonTab>
 
             <Ribbon.ContextualTabGroups>
-                <RibbonContextualTabGroup Header="search Options" Visibility="Visible" Background="#FF53B0F0" />			
+                <RibbonContextualTabGroup Header="DRAWING TOOLS" Visibility="Visible" Background="#FFFF9D00" Foreground="#FFBD5600" />			
             </Ribbon.ContextualTabGroups>
         </Ribbon>
     </Grid>

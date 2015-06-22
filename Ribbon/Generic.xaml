@@ -59,27 +59,32 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Height" Value="28" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">
+                <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">                    
                     <ControlTemplate.Resources>
                         <DataTemplate DataType="{x:Type system:String}">
-                            <TextBlock Text="{TemplateBinding Content}"/>
-                        </DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP" />
+                        </DataTemplate>                        
+                        
+                            
                     </ControlTemplate.Resources>
                     <Border x:Name="OuterBorder"
                         Padding="{TemplateBinding Padding}"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding BorderBrush}"                        
+                        BorderBrush="{TemplateBinding Background}"
+                        BorderThickness="0,5,0,0"                        
                         CornerRadius="0"
                         RenderOptions.ClearTypeHint="Enabled">
-                        <Border x:Name="InnerBorder"
-                                Background="{StaticResource &#270;}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1,1,1,2"
+                        <Border x:Name="InnerBorder"                                
+                                BorderBrush="{TemplateBinding BorderBrush}"                                
+                                BorderThickness="0,0,0,0"
                                 CornerRadius="0">
-                            <ContentPresenter ContentSource="Header" VerticalAlignment="Center" Margin="2,0,2,0"/>
+                            <Border.Background>
+                                <SolidColorBrush Color="{Binding Background.Color, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Opacity="0.05" />
+                            </Border.Background>
+                            <ContentPresenter ContentSource="Header" VerticalAlignment="Center" Margin="2,0,2,0" />
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -406,7 +411,7 @@
                                 BorderThickness="1,1,1,2"
                                 CornerRadius="0"
                                 Padding="{TemplateBinding Padding}">
-                                <ContentPresenter x:Name="ContentPresenter"  ContentSource="Content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <ContentPresenter x:Name="ContentPresenter" ContentSource="Content" VerticalAlignment="Center" HorizontalAlignment="Center" />
 							</Border>
                         </Border>
                     </Grid>
@@ -477,7 +482,6 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsRibbonTabSelected}" Value="True" />
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsMinimized}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsContextualTab}" Value="True"/>
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
@@ -487,7 +491,6 @@
                                 <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="False"/>
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsMinimized}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsContextualTab}" Value="False"/>
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
@@ -498,7 +501,6 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsMinimized}" Value="True"/>
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsDropDownOpen}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsContextualTab}" Value="False"/>
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
@@ -547,7 +549,7 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsDropDownOpen}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -558,7 +560,7 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsDropDownOpen}" Value="False"/>
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -568,7 +570,8 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsDropDownOpen}" Value="True"/>
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsRibbonTabSelected}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
+                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -579,7 +582,7 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsMinimized}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -591,7 +594,8 @@
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="False" />
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="False" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
+                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
 
@@ -2401,6 +2405,7 @@
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized" >
                             <Setter TargetName="RibbonGridFirstRow" Property="MinHeight" Value="33"/>
                             <Setter TargetName="QatTopHost" Property="Margin" Value="0,2,0,0"/>
+                            <Setter TargetName="PART_TitleHost" Property="Margin" Value="3,3,3,0" />
                         </DataTrigger>
                         
                         
