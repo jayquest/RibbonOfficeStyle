@@ -24,7 +24,6 @@ C:\Projetos\Ribbon\ModernRibbon\bin\Debug\Microsoft.Windows.Shell.pdb
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon.csprojResolveAssemblyReference.cache
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\MainWindow.baml
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\Ribbon\Generic.baml
-C:\Projetos\Ribbon\ModernRibbon\obj\Debug\App.baml
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\MainWindow.g.cs
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\App.g.cs
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon_MarkupCompile.cache
