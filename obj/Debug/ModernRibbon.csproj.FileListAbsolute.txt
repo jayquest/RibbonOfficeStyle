@@ -30,3 +30,4 @@ C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon_MarkupCompile.cache
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon.g.resources
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon.Properties.Resources.resources
 C:\Projetos\Ribbon\ModernRibbon\obj\Debug\ModernRibbon.csproj.GenerateResource.Cache
+C:\Projetos\Ribbon\ModernRibbon\obj\Debug\App.baml
