@@ -1690,20 +1690,18 @@
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
-    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" GlassFrameThickness="1" />
+    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="True" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" GlassFrameThickness="0" />
 
-    <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0"/>
+    <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0" NonClientFrameEdges="None"  />
 
     <primitives:RibbonWindowSmallIconConverter x:Key="&#302;"/>
     
     <Style TargetType="{x:Type RibbonWindow}">
-        <Setter Property="WindowChrome.CaptionHeight" Value="30" />
-        <Setter Property="WindowChrome.CornerRadius" Value="0" />
-        <Setter Property="WindowChrome.GlassFrameThickness" Value="0" />
-        <Setter Property="WindowChrome.UseAeroCaptionButtons" Value="False" />
+       
+        <Setter Property="WindowChrome.WindowChrome" Value="{DynamicResource ResourceKey=WindowChromeAeroWithGlass}"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonWindow}">
@@ -1940,7 +1938,7 @@
                         <Border BorderThickness="{Binding Path=(WindowChrome.WindowChrome).ResizeBorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
                             <Grid>
                                 <AdornerDecorator>
-                                    <ContentPresenter Name="PART_RootContentPresenter" Margin="0,-4,0,0"/>
+                                    <ContentPresenter Name="PART_RootContentPresenter" Margin="-2,-4,-2,-2"/>
                                 </AdornerDecorator>
                                 <ResizeGrip x:Name="WindowResizeGrip"
                                         WindowChrome.ResizeGripDirection="BottomRight"
@@ -1965,6 +1963,7 @@
                             <Setter TargetName="WindowShadowBorder" Property="BorderBrush" Value="{StaticResource &#219;}"/>
                             <Setter TargetName="NonClientAreaBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
                         </Trigger>
+                        
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="PART_Icon" Property="Margin" Value="12,0,0,0"/>
 							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
@@ -2018,7 +2017,7 @@
         <Style.Resources>
             <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">Fade</PopupAnimation>
         </Style.Resources>
-		<Setter Property="Margin" Value="-3,0,-3,0" />
+		<Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{StaticResource &#200;}" />

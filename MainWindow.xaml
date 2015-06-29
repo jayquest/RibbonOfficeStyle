@@ -507,6 +507,6 @@
                 <RibbonContextualTabGroup Header="DRAWING TOOLS" Visibility="Visible" Background="#FFFF9D00" Foreground="#FFBD5600" />			
             </Ribbon.ContextualTabGroups>
         </Ribbon>
-        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Red" />
+        <Border Grid.Row="1" BorderThickness="2"  />
     </Grid>
 </RibbonWindow>
