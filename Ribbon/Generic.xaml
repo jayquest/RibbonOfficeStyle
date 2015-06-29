@@ -1967,6 +1967,7 @@
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="PART_Icon" Property="Margin" Value="12,0,0,0"/>
 							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
+                            <Setter Property="WindowChrome.GlassFrameThickness" Value="1" />
                             <Setter TargetName="PART_RootContentPresenter" Property="Margin" Value="4,0,4,4" />
                             <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_RestoreWindowButton" Property="Visibility" Value="Visible"/>
