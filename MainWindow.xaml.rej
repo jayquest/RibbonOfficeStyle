@@ -1,0 +1,12 @@
+diff a/MainWindow.xaml b/MainWindow.xaml	(rejected hunks)
+@@ -10,6 +10,10 @@
+ 		</ResourceDictionary>
+ 	</RibbonWindow.Resources>	   		
+     <Grid>
++        <Grid.RowDefinitions>
++            <RowDefinition Height="Auto" />
++            <RowDefinition Height="1*" />
++        </Grid.RowDefinitions>
+         <Ribbon Name="Ribbon" VerticalAlignment="Stretch" IsDropDownOpen="True"    
+                 Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
+                 FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 

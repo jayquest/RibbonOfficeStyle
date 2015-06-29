@@ -1690,7 +1690,7 @@
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
-    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="True" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" GlassFrameThickness="0" />
+    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" GlassFrameThickness="0" />
 
     <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0" NonClientFrameEdges="None"  />
 

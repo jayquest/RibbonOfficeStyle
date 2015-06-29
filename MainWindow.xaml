@@ -10,10 +10,6 @@
 		</ResourceDictionary>
 	</RibbonWindow.Resources>	   		
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
         <Ribbon Name="Ribbon" VerticalAlignment="Stretch" IsDropDownOpen="True"    
                 Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
                 FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 
@@ -506,7 +502,6 @@
             <Ribbon.ContextualTabGroups>
                 <RibbonContextualTabGroup Header="DRAWING TOOLS" Visibility="Visible" Background="#FFFF9D00" Foreground="#FFBD5600" />			
             </Ribbon.ContextualTabGroups>
-        </Ribbon>
-        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Red" />
+        </Ribbon>        
     </Grid>
 </RibbonWindow>
