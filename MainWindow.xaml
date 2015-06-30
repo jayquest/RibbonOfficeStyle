@@ -1,7 +1,7 @@
 ﻿<RibbonWindow x:Class="ModernRibbon.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="383" Width="1152" SizeChanged="RibbonWindow_SizeChanged" Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}">
+        Height="383" Width="1152" StateChanged="RibbonWindow_StateChanged"  Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}" >
 	<RibbonWindow.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>

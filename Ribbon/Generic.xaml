@@ -4,6 +4,8 @@
                     xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
                     xmlns:primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=system.windows.controls.ribbon"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+                    xmlns:b="clr-namespace:ModernRibbon.Attached"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
@@ -1690,7 +1692,7 @@
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
-    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="30" UseAeroCaptionButtons="False" GlassFrameThickness="0" />
+    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="23" UseAeroCaptionButtons="False" GlassFrameThickness="1" NonClientFrameEdges="None" />
 
     <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0" NonClientFrameEdges="None"  />
 
@@ -2139,11 +2141,14 @@
                                               TextBlock.FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}"
                                               TextBlock.FontWeight="{DynamicResource {x:Static SystemFonts.CaptionFontWeightKey}}"
                                               TextElement.Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"											  
                                               Margin="3,0"
                                               Height="29"
                                               MinWidth="75"
                                               IsHitTestVisible="False">
+                                    <i:Interaction.Behaviors>
+                                        <b:TitleWidthBehavior />
+                                    </i:Interaction.Behaviors>
                                     <ContentPresenter.Resources>
                                         <!-- Glowing effect around Title in Aero glass theme -->
                                         <DataTemplate DataType="{x:Type system:String}">
@@ -2153,7 +2158,7 @@
                                                    TextTrimming="CharacterEllipsis"
                                                    FontSize="12"
                                                    VerticalAlignment="Center"
-                                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                                                   HorizontalAlignment="Center"/>
                                             <DataTemplate.Triggers>                                                                                           
                                                 <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
                                                     <Setter TargetName="titleTextBlock" Property="Margin" Value="0,1,0,0" />
