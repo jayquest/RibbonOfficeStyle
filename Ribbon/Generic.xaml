@@ -1812,7 +1812,6 @@
                         </LinearGradientBrush>
 
                     </ControlTemplate.Resources>
-
                     <Grid d:DesignWidth="800" d:DesignHeight="400">
 
                         <Border Name="NonClientAreaBorder"
@@ -1951,7 +1950,6 @@
                             </Grid>
                         </Border>
                     </Grid>
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
                             <!-- Gray out the outer border. -->
@@ -2144,7 +2142,6 @@
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"											  
                                               Margin="3,0"
                                               Height="29"
-                                              MinWidth="75"
                                               IsHitTestVisible="False">
                                     <i:Interaction.Behaviors>
                                         <b:TitleWidthBehavior />

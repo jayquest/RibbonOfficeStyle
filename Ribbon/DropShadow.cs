@@ -6,7 +6,7 @@ using System.Windows.Interop;
 
 namespace ModernRibbon
 {
-    class DwmDropShadow
+    public class DwmDropShadow
     {
 
         [DllImport("dwmapi.dll", PreserveSig = true)]
@@ -43,6 +43,7 @@ namespace ModernRibbon
         /// </summary>
         /// <param name="window">Window to which the shadow will be applied</param>
         /// <returns>True if the method succeeded, false if not</returns>
+        /// 
         private static bool DropShadow(Window window)
         {
             try
@@ -53,7 +54,7 @@ namespace ModernRibbon
 
                 if (ret1 == 0)
                 {
-                    Margins m = new Margins { Bottom = 0, Left = 0, Right = 0, Top = 0 };
+                    Margins m = new Margins { Bottom = -1, Left = -1, Right = -1, Top = -1 };
                     int ret2 = DwmExtendFrameIntoClientArea(helper.Handle, ref m);
                     return ret2 == 0;
                 }
