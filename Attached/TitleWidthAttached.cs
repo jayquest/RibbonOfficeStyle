@@ -41,24 +41,27 @@ namespace ModernRibbon.Attached
                     first = false;
                 }
 
-                var iconMargin = 16;
+                var iconMargin = 37;
 
                 var contextualTabs = panel.Children.OfType<RibbonContextualTabGroupItemsControl>().FirstOrDefault();
                 var appmenus = panel.Children.OfType<Grid>().FirstOrDefault();
 
                 var appMenuVisible = appmenus != null && appmenus.IsVisible && appmenus.ActualWidth != 0D;
-                var appmenusWidth = appmenus != null ? appmenus.ActualWidth : 0D;
+                var appmenusWidth = appmenus != null ? appmenus.ActualWidth + appmenus.Margin.Left + appmenus.Margin.Right : 0D;
 
                 var content = (TextBlock)VisualTreeHelper.GetChild(AssociatedObject, 0);
                 content.Padding = new Thickness(0);
 
                 var titleWidth = content.ActualWidth;
 
-                var panelLeft = ((panel.Ribbon.ActualWidth - appmenusWidth - iconMargin) / 2);
+                var panelLeft = ((panel.Ribbon.ActualWidth - titleWidth) / 2) - appmenusWidth - iconMargin;
                 var panelRight = panelLeft + titleWidth;
 
                 if (contextualTabs != null && contextualTabs.IsVisible && contextualTabs.ActualWidth != 0D)
                 {
+                    panelLeft += appmenusWidth + 10;
+                    panelRight += appmenusWidth + 10;
+
                     Point ctxTabPos = contextualTabs.TransformToAncestor(panel).Transform(new Point(0, 0));
 
 
@@ -96,10 +99,9 @@ namespace ModernRibbon.Attached
                         content.Padding = padding;
                     }
                 }
-                else
+                else 
                 {
-                    var width = appMenuVisible ? (panelLeft + titleWidth - iconMargin - appmenus.ActualWidth) : (panelLeft + titleWidth - iconMargin);
-                    AssociatedObject.Width = width - 22;
+                    AssociatedObject.Width = panelLeft + titleWidth;
                     content.HorizontalAlignment = HorizontalAlignment.Right;
                     
                 }
