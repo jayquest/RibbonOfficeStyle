@@ -1,7 +1,7 @@
 ﻿<RibbonWindow x:Class="ModernRibbon.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="383" Width="1152" StateChanged="RibbonWindow_StateChanged"  Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}" >
+        Height="383" Width="1152" StateChanged="RibbonWindow_StateChanged"  Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}" Icon="/Images/Icons/ddv4_32.ico">
 	<RibbonWindow.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -13,7 +13,7 @@
         <Ribbon Name="Ribbon" VerticalAlignment="Stretch" IsDropDownOpen="True"    
                 Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
                 FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 
-                MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4" >
+                MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4">
             <Ribbon.HelpPaneContent>
                 <Menu Height="23" VerticalContentAlignment="Stretch" HorizontalAlignment="Left">
                     <MenuItem Height="23">
@@ -54,18 +54,23 @@
                     </MenuItem>
                 </Menu>
             </Ribbon.HelpPaneContent>
-            <Ribbon.QuickAccessToolBar>
+            <Ribbon.QuickAccessToolBar >
                 <RibbonQuickAccessToolBar>
-                    <RibbonMenuButton Margin="1,0,1,0">
-                        <RibbonMenuButton.SmallImageSource>
+					<RibbonButton>
+						<RibbonButton.SmallImageSource>
                             <BitmapImage UriSource="Images/add.ico" DecodePixelWidth="16" DecodePixelHeight="16"/>
-                        </RibbonMenuButton.SmallImageSource>
-                    </RibbonMenuButton>
-                    <RibbonMenuButton Margin="1,0,1,0" ToolTip="Salvar a parada">
-                        <RibbonMenuButton.SmallImageSource>
+                        </RibbonButton.SmallImageSource>
+					</RibbonButton>
+                    <RibbonButton Margin="1,0,1,0">
+                        <RibbonButton.SmallImageSource>
+                            <BitmapImage UriSource="Images/add.ico" DecodePixelWidth="16" DecodePixelHeight="16"/>
+                        </RibbonButton.SmallImageSource>
+                    </RibbonButton>
+                    <RibbonButton Margin="1,0,1,0" ToolTip="Salvar a parada">
+                        <RibbonButton.SmallImageSource>
                             <BitmapImage UriSource="Images/Icons/download_16.png" DecodePixelWidth="16" DecodePixelHeight="16"/>
-                        </RibbonMenuButton.SmallImageSource>
-                    </RibbonMenuButton>
+                        </RibbonButton.SmallImageSource>
+                    </RibbonButton>
                     <RibbonMenuButton Margin="1,0,1,0">
                         <RibbonMenuButton.SmallImageSource>
                             <BitmapImage UriSource="Images/Icons/User_16.png" DecodePixelWidth="16" DecodePixelHeight="16"/>
@@ -426,6 +431,29 @@
                 </RibbonGroup>
 
             </RibbonTab>
+            
+            <RibbonTab Header="CONFIGS">
+                <RibbonGroup Header="local Folder" >
+                    <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
+                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="False"></RibbonRadioButton>
+                    <RibbonRadioButton Label="subfolders" SmallImageSource="/Images/subfolders_16x.png" IsChecked="False"></RibbonRadioButton>
+                </RibbonGroup>
+                <RibbonGroup Header="search Fields">
+                    <RibbonToggleButton Label="searchOnContent" IsChecked="True">
+                        <RibbonToggleButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Documents_32x.png" />
+                        </RibbonToggleButton.LargeImageSource>
+                    </RibbonToggleButton>
+                    <RibbonMenuButton  Label="select Fields" >
+                        <RibbonMenuButton.LargeImageSource>
+                            <BitmapImage UriSource="/Images/Fields_32x.png" />
+                        </RibbonMenuButton.LargeImageSource>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
 
             <RibbonTab Header="SEARCH TAB" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="DRAWING TOOLS">
 
@@ -451,7 +479,7 @@
                 </RibbonGroup>
             </RibbonTab>
 
-            <RibbonTab Header="CONFIGURATIONS" KeyTip="L" Margin="0,-1,0,1" ContextualTabGroupHeader="DRAWING TOOLS">
+            <RibbonTab Header="CONFIGURATIONS" Margin="0,-1,0,1" ContextualTabGroupHeader="DRAWING TOOLS">
 
                 <RibbonGroup Header="local Folder" >
                     <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
@@ -475,30 +503,7 @@
                 </RibbonGroup>
             </RibbonTab>
 			
-            <RibbonTab Header="CONFIGS" KeyTip="L" Margin="0,-1,0,1">
-
-                <RibbonGroup Header="local Folder" >
-                    <RibbonRadioButton Label="all Folders" SmallImageSource="/Images/Folder.ico" IsChecked="True"></RibbonRadioButton>
-                    <RibbonRadioButton Label="actual Folder" SmallImageSource="/Images/Folder.ico" IsChecked="False"></RibbonRadioButton>
-                    <RibbonRadioButton Label="subfolders" SmallImageSource="/Images/subfolders_16x.png" IsChecked="False"></RibbonRadioButton>
-                </RibbonGroup>
-                <RibbonGroup Header="search Fields">
-                    <RibbonToggleButton Label="searchOnContent" IsChecked="True">
-                        <RibbonToggleButton.LargeImageSource>
-                            <BitmapImage UriSource="/Images/Documents_32x.png" />
-                        </RibbonToggleButton.LargeImageSource>
-                    </RibbonToggleButton>
-                    <RibbonMenuButton  Label="select Fields" >
-                        <RibbonMenuButton.LargeImageSource>
-                            <BitmapImage UriSource="/Images/Fields_32x.png" />
-                        </RibbonMenuButton.LargeImageSource>
-                    </RibbonMenuButton>
-                </RibbonGroup>
-                <RibbonGroup>
-                    <RibbonButton Label="close Search" LargeImageSource="/Images/Action_Cancel_32xLG.png" ></RibbonButton>
-                </RibbonGroup>
-            </RibbonTab>
-
+            
             <Ribbon.ContextualTabGroups>
                 <RibbonContextualTabGroup Header="DRAWING TOOLS" Visibility="Visible" Background="#FFFF9D00" Foreground="#FFBD5600" />			
             </Ribbon.ContextualTabGroups>

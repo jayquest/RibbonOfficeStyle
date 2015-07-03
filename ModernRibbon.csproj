@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attached\RibbonContextualTabMargin.cs" />
     <Compile Include="Attached\TitleWidthAttached.cs" />
     <Compile Include="Ribbon\DropShadow.cs" />
     <Page Include="MainWindow.xaml">
