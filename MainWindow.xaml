@@ -14,6 +14,9 @@
                 Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
                 FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 
                 MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
             <Ribbon.HelpPaneContent>
                 <Menu Height="23" VerticalContentAlignment="Stretch" HorizontalAlignment="Left">
                     <MenuItem Height="23">

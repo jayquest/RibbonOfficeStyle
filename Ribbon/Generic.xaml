@@ -79,7 +79,7 @@
                 <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">                    
                     <ControlTemplate.Resources>
                         <DataTemplate DataType="{x:Type system:String}">
-                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP" />
+                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP" Padding="10,0" />
                         </DataTemplate>                        
                         
                             
@@ -102,14 +102,8 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="InnerBorder" Property="BorderThickness" Value="2,2,2,3" />
-                            <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="InnerBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" />
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=RibbonWindow},Path=WindowState}" Value="Maximized">
+                            <Setter Property="Height" Value="30" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -136,14 +130,7 @@
                             Background="{TemplateBinding Background}">
                         <TextBlock x:Name="Text" 
                                        Text="{TemplateBinding Label}" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" >
-                            <Setter TargetName="Text" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
+                    </Border>                  
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2215,7 +2202,7 @@
                         </DockPanel>
 
                         <!-- Application Menu -->
-                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Margin="0,0,0,0" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
+                        <ContentPresenter x:Name="applicationMenu" Grid.Row="1" Margin="-1,0,0,0" Content="{TemplateBinding ApplicationMenu}" VerticalAlignment="Top" />
 
                         <RibbonTabHeaderItemsControl 
                             x:Name="TabHeaderItemsControl" 
@@ -2239,6 +2226,12 @@
 
                     </Grid>
                     <ControlTemplate.Triggers>
+
+                        <Trigger Property="ActualWidth" Value="0" SourceName="applicationMenu">
+                            <Setter Property="Margin"  Value="0,0,0,1" TargetName="TabHeaderItemsControl"/>
+                            <Setter Property="Margin"  Value="0" TargetName="applicationMenu"/>
+                        </Trigger>
+                        
                         <Trigger Property="IsCollapsed" Value="true">
                             <Setter Property="Visibility"  Value="Collapsed" TargetName="applicationMenu"/>
                             <Setter Property="Visibility"  Value="Collapsed" TargetName="QatBottomHost"/>
@@ -2307,18 +2300,6 @@
                             <Setter TargetName="PART_TitleHost" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
                         </MultiDataTrigger>
 
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="BackgroundBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                            <Setter TargetName="BackgroundBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="groupsBorder" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="groupsBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="groupsBorder" Property="Height" Value="{StaticResource &#214;}"/>
-                            <Setter TargetName="QatBottomHost" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="titleBarBackground" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="titleBarBackground" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="CollapsedPopupBackgroundBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                            <Setter TargetName="PART_ITEMSPRESENTERPOPUP" Property="PopupAnimation" Value="None" />                           
-                        </DataTrigger>
 
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized" >
                             <Setter TargetName="PART_TitleHost" Property="Margin" Value="3,1,3,0" />
@@ -7634,9 +7615,7 @@
                         </ScrollViewer>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background" Value="Transparent" />
-                        </DataTrigger>
+                       
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
