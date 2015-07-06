@@ -41,7 +41,7 @@ namespace ModernRibbon.Attached
                     first = false;
                 }
 
-                var iconMargin = 37;
+                var iconMargin = 16;
 
                 var contextualTabs = panel.Children.OfType<RibbonContextualTabGroupItemsControl>().FirstOrDefault();
                 var appmenus = panel.Children.OfType<Grid>().FirstOrDefault();

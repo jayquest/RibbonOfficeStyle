@@ -1,7 +1,7 @@
 ﻿<RibbonWindow x:Class="ModernRibbon.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="383" Width="1152" StateChanged="RibbonWindow_StateChanged"  Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}" Icon="/Images/Icons/ddv4_32.ico">
+        Height="383" Width="1152" Style="{DynamicResource ResourceKey={x:Type RibbonWindow}}" Icon="/Images/Icons/ddv4_32.ico">
 	<RibbonWindow.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -11,9 +11,7 @@
 	</RibbonWindow.Resources>	   		
     <Grid>
         <Ribbon Name="Ribbon" VerticalAlignment="Stretch" IsDropDownOpen="True"    
-                Background="#FFFFFFFF" BorderBrush="#FFDADBDC" 
-                FocusedBackground="#FFE8EFF7" FocusedBorderBrush="#FFA4CEF9" PressedBackground="#FFC9E0F7" PressedBorderBrush="#FF62A2E4" MouseOverBackground="#FFE8EFF7" 
-                MouseOverBorderBrush="#FFA4CEF9" CheckedBackground="#FFCDE4FC" CheckedBorderBrush="#FF64A4E6" Title="Digitaldoc V4">
+                Title="Digitaldoc V4">
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu Visibility="Collapsed"/>
             </Ribbon.ApplicationMenu>
