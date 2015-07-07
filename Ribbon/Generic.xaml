@@ -10,19 +10,21 @@
 
     <Style TargetType="{x:Type FrameworkElement}">
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
-        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />        
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
     </Style>
+
+
 
     <SolidColorBrush x:Key="AppBaseColor" Color="#FF2B579A" />
     <SolidColorBrush x:Key="AppBorderColor" Color="#FF2B579A" />
-    
+
     <SolidColorBrush x:Key="AppMenuColor" Color="#FF2B579A" />
     <SolidColorBrush x:Key="AppMenuColorMouseOver" Color="#FF3E6DB5" />
     <SolidColorBrush x:Key="AppMenuColorClick" Color="#FF2B579A" />
-    
+
     <SolidColorBrush x:Key="TabHeaderForegroundColor" Color="#FF2B579A" />
-    
-    
+
+
     <Style x:Key="{x:Type RibbonControl}" TargetType="{x:Type RibbonControl}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=ControlSizeDefinition.MinWidth.RibbonControlLengthUnitType}" Value="Pixel">
@@ -79,13 +81,13 @@
         <Setter Property="Margin" Value="2,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">                    
+                <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">
                     <ControlTemplate.Resources>
                         <DataTemplate DataType="{x:Type system:String}">
-                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP" Padding="10,0" />
-                        </DataTemplate>                        
-                        
-                            
+                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP"  Padding="10,0" />
+                        </DataTemplate>
+
+
                     </ControlTemplate.Resources>
                     <Border x:Name="OuterBorder"
                         Padding="{TemplateBinding Padding}"
@@ -133,7 +135,7 @@
                             Background="{TemplateBinding Background}">
                         <TextBlock x:Name="Text" 
                                        Text="{TemplateBinding Label}" />
-                    </Border>                  
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -178,7 +180,7 @@
         ==================================================================-->
 
     <!-- Ribbon Visual States -->
-    <SolidColorBrush x:Key="MouseOverBackground" Color="#FFD5E1F2" />    
+    <SolidColorBrush x:Key="MouseOverBackground" Color="#FFD5E1F2" />
     <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#FFD5E1F2" />
     <SolidColorBrush x:Key="PressedBackground" Color="#FFA3BDE3" />
     <SolidColorBrush x:Key="PressedBorderBrush" Color="#FFA3BDE3" />
@@ -376,8 +378,8 @@
         <Setter Property="CheckedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.Background}"/>
         <Setter Property="MouseOverBorderBrush" Value="#CCDFDFDF"/>
         <Setter Property="FocusedBorderBrush" Value="#CCDFDFDF"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />  
-        
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonTabHeader}">
@@ -395,14 +397,14 @@
                                 CornerRadius="0"
                                 Padding="{TemplateBinding Padding}">
                                 <ContentPresenter x:Name="ContentPresenter" ContentSource="Content" VerticalAlignment="Center" HorizontalAlignment="Center"  RenderOptions.BitmapScalingMode="NearestNeighbor" TextOptions.TextRenderingMode="Grayscale"/>
-							</Border>
+                            </Border>
                         </Border>
-                    </Grid>                    
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
-                     
+
                         <!-- Selected border -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -428,7 +430,7 @@
                             <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource TabHeaderForegroundColor}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{x:Null}" />
                         </MultiDataTrigger>
-                       
+
 
                         <!-- MouseOver border-->
                         <MultiDataTrigger>
@@ -438,17 +440,17 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.IsMinimized}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />                            
+                            <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="False"/>                                
+                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="False"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{StaticResource TabHeaderForegroundColor}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
-                        </MultiDataTrigger>                        
+                        </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="False"/>
@@ -505,7 +507,7 @@
                             <Setter Property="b:ConfigContextualTabBehaviorExtension.ConfigContextualTab" Value="True" />
                         </MultiDataTrigger>
 
-                        
+
 
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -522,7 +524,7 @@
                                 <Setter.Value>
                                     <SolidColorBrush Color="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Background.Color}" Opacity="0.08" />
                                 </Setter.Value>
-                            </Setter> 
+                            </Setter>
                         </MultiDataTrigger>
 
                         <MultiDataTrigger>
@@ -531,7 +533,7 @@
                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsContextualTab}" Value="True"/>
                                 <Condition Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True" />
                             </MultiDataTrigger.Conditions>
-                            
+
                             <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ContextualTabGroup.Foreground}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
@@ -560,7 +562,7 @@
                             <Setter TargetName="PART_OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBorderBrush}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{StaticResource &#297;}" />
                         </MultiDataTrigger>
-                                               
+
 
                         <!-- Selected Background-->
                         <MultiDataTrigger>
@@ -571,7 +573,7 @@
                             <Setter TargetName="PART_OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBackground}" />
                         </MultiDataTrigger>
 
-                        <!-- Explicit Default Background-->                        
+                        <!-- Explicit Default Background-->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="False"/>
@@ -582,7 +584,7 @@
                             <Setter TargetName="PART_OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" />
                         </MultiDataTrigger>
 
-                     
+
                         <!-- Other Triggers -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -747,7 +749,7 @@
         RibbonToggleButton
         ==================================================================-->
 
-    <ControlTemplate x:Key="&#292;" TargetType="{x:Type RibbonToggleButton}" >
+    <ControlTemplate x:Key="&#292;" TargetType="{x:Type RibbonToggleButton}">
         <Grid x:Name="MainGrid"
               SnapsToDevicePixels="True">
             <Border x:Name="OuterBorder"
@@ -841,21 +843,21 @@
                 <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
             </Trigger>
 
-             <!--IsFocused--> 
+            <!--IsFocused-->
             <Trigger Property="IsKeyboardFocused" Value="True">
                 <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBackground}" />
                 <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBackground}" />
                 <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusedBackground}" />
             </Trigger>
 
-             <!--IsEnabled--> 
+            <!--IsEnabled-->
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="PART_Image" Property="Opacity" Value="0.5" />
                 <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                 <Setter TargetName="TwoLineText" Property="PathFill" Value="{StaticResource &#203;}"/>
             </Trigger>
 
-             <!--IsChecked--> 
+            <!--IsChecked-->
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBackground}" />
                 <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBackground}" />
@@ -912,7 +914,7 @@
                 <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0" />
                 <Setter TargetName="InnerBorder" Property="CornerRadius" Value="0" />
             </Trigger>
-       
+
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -1139,31 +1141,6 @@
                             <Setter TargetName="MainBorder" Property="BorderThickness" Value="0,0,1,0" />
                         </Trigger>
 
-                        <!-- HighContrast -->
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <!-- This is a hack for v3.0 to set the caret color to something visible in high contrast. Switch to using CaretBrush in v4 -->
-                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="FocusVisual" Property="Stroke" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                            <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                        </DataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsInControlGroup}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1350,13 +1327,7 @@
                             <Setter TargetName="Shadow" Property="Margin" Value="0,0,5,5"/>
                             <Setter TargetName="Shadow" Property="Color"  Value="{StaticResource &#213;}"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" >
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" />
-                            <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent"/>
-                        </DataTrigger>
+
                         <Trigger Property="IsPlacementTargetInRibbonGroup" Value="True">
                             <Setter Property="Placement" Value="Custom" />
                         </Trigger>
@@ -1547,13 +1518,6 @@
                         <Trigger SourceName="PART_OverflowPopup" Property="Popup.IsOpen" Value="False">
                             <Setter TargetName="PART_OverflowPopup" Property="PopupAnimation" Value="None" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="PART_OverflowPopup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                            <Setter TargetName="PopupBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="Shdw" Property="CornerRadius" Value="0"/>
-                        </DataTrigger>
                         <Trigger SourceName="PART_OverflowPopup" Property="Popup.HasDropShadow" Value="true">
                             <Setter TargetName="Shdw" Property="Margin" Value="0,0,5,5"/>
                             <Setter TargetName="Shdw" Property="Color" Value="{StaticResource &#213;}"/>
@@ -1562,11 +1526,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                <Setter Property="Margin" Value="4,0,6,0"/>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 
     <LinearGradientBrush EndPoint="0,0" StartPoint="1,0" x:Key="ActiveCaptionGradient" x:Shared="False">
@@ -1583,7 +1542,7 @@
     <!--=================================================================
         RibbonWindow
     ==================================================================-->
-   
+
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
@@ -1592,57 +1551,57 @@
     <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0" NonClientFrameEdges="None"  />
 
     <primitives:RibbonWindowSmallIconConverter x:Key="&#302;"/>
-    
+
     <Style TargetType="{x:Type RibbonWindow}">
-       
+
         <Setter Property="WindowChrome.WindowChrome" Value="{DynamicResource ResourceKey=WindowChromeAeroWithGlass}"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="BorderThickness" Value="0"/>        
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonWindow}">
                     <ControlTemplate.Resources>
 
-                        <Style TargetType="{x:Type Button}" x:Key="&#201;">                           
-                            <Setter Property="Background" Value="Transparent"/>							
+                        <Style TargetType="{x:Type Button}" x:Key="&#201;">
+                            <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="BorderBrush" Value="Gray"/>
                             <Setter Property="Padding" Value="8,2"/>
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">                                        
+                                    <ControlTemplate TargetType="{x:Type Button}">
                                         <Grid>
                                             <Border CornerRadius="0" BorderBrush="{TemplateBinding BorderBrush}"
                                                     Background="{TemplateBinding Background}"
                                                     BorderThickness="0"
                                                     Width="{TemplateBinding Width}"
-                                                    Height="{TemplateBinding Height}">                                                
+                                                    Height="{TemplateBinding Height}">
                                             </Border>
                                             <ContentPresenter Content="{TemplateBinding Content}"/>
                                         </Grid>
                                         <ControlTemplate.Triggers>
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
-                                                    <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="False"/>                                                    
+                                                    <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="False"/>
                                                 </MultiDataTrigger.Conditions>
                                                 <Setter Property="Background" Value="Transparent"/>
-												<Setter Property="BorderBrush" Value="LightGray"/>
+                                                <Setter Property="BorderBrush" Value="LightGray"/>
                                             </MultiDataTrigger>
-											<MultiDataTrigger>
-												<MultiDataTrigger.Conditions>													
-													<Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
-													<Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
-												</MultiDataTrigger.Conditions>	
-                                                <Setter Property="Background" Value="#22005588"/>                                                
-												<Setter Property="BorderBrush" Value="#BB005588"/>                                            
-											</MultiDataTrigger>
-											<MultiDataTrigger>
-												<MultiDataTrigger.Conditions>													
-													<Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
-													<Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}" Value="True"/>                                          
-												</MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Background" Value="#22005588"/>
+                                                <Setter Property="BorderBrush" Value="#BB005588"/>
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
+                                                    <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
                                                 <Setter Property="Background" Value="#33005588"/>
-												<Setter Property="BorderBrush" Value="#FF005588"/>
+                                                <Setter Property="BorderBrush" Value="#FF005588"/>
                                             </MultiDataTrigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -1766,7 +1725,7 @@
                                                     Width="28">
                                                 <Button.Content>
                                                     <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="2" Width="9" BorderBrush="{Binding Parent.BorderBrush, Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="1" VerticalAlignment="Center" Margin="0,6,0,0"/>
-												</Button.Content>
+                                                </Button.Content>
                                             </Button>
                                             <Button Name="PART_MaximizeWindowButton" Focusable="False"
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -1774,9 +1733,9 @@
 													
                                                     Style="{StaticResource &#201;}"                                                    
                                                     Width="28">
-                                                 <Button.Content>
+                                                <Button.Content>
                                                     <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="10" Width="12" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,3,1,1" VerticalAlignment="Center" />
-												</Button.Content>
+                                                </Button.Content>
                                             </Button>
                                             <Button Name="PART_RestoreWindowButton" Focusable="False"
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -1785,12 +1744,12 @@
 													Visibility="Collapsed"
                                                     Width="28"
                                                     >
-                                                 <Button.Content>
-													<Grid>
-														<Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="0,2,1,0" VerticalAlignment="Center" Margin="4,0,0,3"/>	
-														<Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="0,2,0,0"/>															
-													</Grid>                                                    
-												</Button.Content>
+                                                <Button.Content>
+                                                    <Grid>
+                                                        <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="0,2,1,0" VerticalAlignment="Center" Margin="4,0,0,3"/>
+                                                        <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="0,2,0,0"/>
+                                                    </Grid>
+                                                </Button.Content>
                                             </Button>
                                             <Button Name="PART_CloseWindowButton" Focusable="False"
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
@@ -1798,25 +1757,25 @@
                                                     Style="{StaticResource &#201;}"
                                                     
                                                     Width="30">
-                                                 <Button.Content>
-													<Grid>
+                                                <Button.Content>
+                                                    <Grid>
                                                         <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,2,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-														<Border.RenderTransform>
-															<TransformGroup>
-																<ScaleTransform/>
-																<SkewTransform/>
-																<RotateTransform Angle="45"/>
-																<TranslateTransform/>
-															</TransformGroup>
-														</Border.RenderTransform>
-													</Border>
+                                                            <Border.RenderTransform>
+                                                                <TransformGroup>
+                                                                    <ScaleTransform/>
+                                                                    <SkewTransform/>
+                                                                    <RotateTransform Angle="45"/>
+                                                                    <TranslateTransform/>
+                                                                </TransformGroup>
+                                                            </Border.RenderTransform>
+                                                        </Border>
                                                         <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,2" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-														<Border.RenderTransform>
-															<RotateTransform Angle="315"/>
-														</Border.RenderTransform>
-													</Border>
-													</Grid>
-												</Button.Content>
+                                                            <Border.RenderTransform>
+                                                                <RotateTransform Angle="315"/>
+                                                            </Border.RenderTransform>
+                                                        </Border>
+                                                    </Grid>
+                                                </Button.Content>
                                             </Button>
                                         </StackPanel>
 
@@ -1858,10 +1817,10 @@
                             <Setter TargetName="WindowShadowBorder" Property="BorderBrush" Value="{StaticResource &#219;}"/>
                             <Setter TargetName="NonClientAreaBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
                         </Trigger>
-                        
+
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="PART_Icon" Property="Margin" Value="12,0,0,0"/>
-							<Setter TargetName="TitleGrid" Property="Margin" Value="5" />
+                            <Setter TargetName="TitleGrid" Property="Margin" Value="5" />
                             <Setter Property="WindowChrome.GlassFrameThickness" Value="1" />
                             <Setter TargetName="PART_RootContentPresenter" Property="Margin" Value="4,0,4,4" />
                             <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
@@ -1892,10 +1851,10 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>       
+        </Setter>
     </Style>
 
-   
+
     <!--=================================================================
         Ribbon
     ==================================================================-->
@@ -1913,7 +1872,7 @@
         <Style.Resources>
             <PopupAnimation x:Key="{x:Static SystemParameters.MenuPopupAnimationKey}">Fade</PopupAnimation>
         </Style.Resources>
-		<Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{StaticResource RibbonBackground}" />
@@ -2051,7 +2010,7 @@
                                                    FontSize="12"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
-                                            <DataTemplate.Triggers>                                                                                           
+                                            <DataTemplate.Triggers>
                                                 <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
                                                     <Setter TargetName="titleTextBlock" Property="Margin" Value="0,1,0,0" />
                                                 </DataTrigger>
@@ -2096,7 +2055,7 @@
                             <Setter Property="Margin"  Value="0,0,0,1" TargetName="TabHeaderItemsControl"/>
                             <Setter Property="Margin"  Value="0" TargetName="applicationMenu"/>
                         </Trigger>
-                        
+
                         <Trigger Property="IsCollapsed" Value="true">
                             <Setter Property="Visibility"  Value="Collapsed" TargetName="applicationMenu"/>
                             <Setter Property="Visibility"  Value="Collapsed" TargetName="QatBottomHost"/>
@@ -2170,8 +2129,8 @@
                             <Setter TargetName="PART_TitleHost" Property="Margin" Value="3,1,3,0" />
                             <Setter TargetName="PART_ContextualTabGroupItemsControl" Property="Margin" Value="0,4,0,0" />
                         </DataTrigger>
-                        
-                        
+
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -2393,57 +2352,8 @@
                 <Setter TargetName="Border" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
 
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
 
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
 
-                <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="Border" Property="CornerRadius" Value="0" />
-                <Setter TargetName="Border" Property="Background" Value="Transparent" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PopupOverlayBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="PopupOverlayBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsPressed ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="Border" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -2664,58 +2574,6 @@
                 <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
 
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="Border" Property="CornerRadius" Value="0" />
-                <Setter TargetName="Border" Property="Background" Value="Transparent" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PopupOverlayBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="PopupOverlayBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsPressed ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -2929,59 +2787,6 @@
                 <Setter TargetName="Arrow" Property="Opacity" Value="0.5" />
                 <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="Border" Property="CornerRadius" Value="0" />
-                <Setter TargetName="Border" Property="Background" Value="Transparent" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PopupOverlayBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="PopupOverlayBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsPressed ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -3129,8 +2934,8 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="PART_Image" Property="Opacity" Value="0.5" />
                 <Setter TargetName="OuterBorder" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
-            </Trigger>                       
-         
+            </Trigger>
+
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -3493,29 +3298,6 @@
                             <Setter TargetName="MainBorder" Property="BorderThickness" Value="0,0,1,0" />
                         </Trigger>
 
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="CheckMark" Property="Opacity" Value="1" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsInControlGroup}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -3691,18 +3473,6 @@
                         <Trigger SourceName="PART_Popup" Property="Popup.IsOpen" Value="False">
                             <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
                         </Trigger>
-                        <!-- HighContrast -->
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                            <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -3855,14 +3625,6 @@
                             <Setter TargetName="PART_FilterMenuButton" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="PART_FilterContentPane" Property="Visibility" Value="Collapsed"/>
                         </MultiTrigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -3920,13 +3682,6 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
-
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="HeaderBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="HeaderBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="HeaderBorder" Property="CornerRadius" Value="0"/>
-                        </DataTrigger>
 
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -4008,14 +3763,6 @@
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#276;}" />
                         </Trigger>
 
-                        <!-- HighContrast -->
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="PressedStateOverlay" Property="CornerRadius" Value="0" />
-                        </DataTrigger>
 
                         <!-- Highlighted -->
                         <MultiTrigger>
@@ -4026,47 +3773,19 @@
                             <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
                             <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
                         </MultiTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
                         <!-- IsPressed -->
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PressedBackground}" />
                             <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PressedBorderBrush}"  />
                             <Setter TargetName="PressedStateOverlay" Property="Background" Value="{StaticResource &#275;}" />
                         </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                            <Setter TargetName="PressedStateOverlay" Property="Background" Value="{StaticResource &#275;}" />
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
 
                         <!-- IsSelected -->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBackground}" />
                             <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBorderBrush}"  />
                         </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
+
                         <!-- IsHighlighted + IsSelected -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -4075,26 +3794,7 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="InnerBorder" Property="Background" Value="{StaticResource &#269;}" />
                         </MultiTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
 
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -4248,46 +3948,6 @@
                             <Setter TargetName="GroupImage" Property="Opacity" Value="0.5" />
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="ImageMiddleBorder" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="ImageMiddleBorder" Property="BorderThickness" Value="0"/>
-                            <Setter TargetName="ImageInnerBorder" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="ImageInnerBorder" Property="BorderThickness" Value="0"/>
-                            <Setter TargetName="PART_HotBackground" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="LabelBorder" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="ButtonOuterBorder" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="ButtonOuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                            <Setter TargetName="ButtonOuterBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="ButtonInnerBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="ButtonInnerBorder" Property="BorderThickness" Value="0,1,0,0"/>
-                        </DataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ButtonInnerBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            <Setter TargetName="ButtonInnerBorder" Property="BorderThickness" Value="1"/>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ButtonInnerBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            <Setter TargetName="ButtonInnerBorder" Property="BorderThickness" Value="1"/>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="ButtonOuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"></Condition>
@@ -4407,34 +4067,6 @@
                             <Setter TargetName="OuterBorder" Property="Background" Value="Transparent"/>
                             <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#AA808080"/>
                         </MultiDataTrigger>
-
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0"/>
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="Transparent"/>
-                        </DataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -4496,17 +4128,6 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
-                <Setter TargetName="PART_HotBackground" Property="Background" Value="Transparent"/>
-                <Setter TargetName="SeparatorBorder" Property="Visibility" Value="Collapsed"/>
-                <Setter TargetName="GroupBorder" Property="BorderThickness" Value="1"/>
-                <Setter TargetName="GroupBorder" Property="Background" Value="Transparent"/>
-                <Setter TargetName="GroupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                <Setter TargetName="LabelSeparatorBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-            </DataTrigger>
-
             <EventTrigger RoutedEvent="UIElement.MouseEnter">
                 <EventTrigger.Actions>
                     <BeginStoryboard>
@@ -4618,15 +4239,6 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="PART_HotBackground" Property="Background" Value="Transparent"/>
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                <Setter TargetName="Shdw" Property="CornerRadius" Value="0"/>
-            </DataTrigger>
 
             <Trigger SourceName="PART_Popup" Property="Popup.HasDropShadow" Value="true">
                 <Setter TargetName="Shdw" Property="Margin" Value="0,0,5,5"/>
@@ -4959,69 +4571,7 @@
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
 
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
 
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="Border" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                            <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                            <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                            <Setter TargetName="SideBarOverlay" Property="Background"  Value="Transparent" />
-                            <Setter TargetName="PART_SideBarBorder" Property="Background"  Value="Transparent" />
-                            <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                        </DataTrigger>
-                        <!-- HighContrast && (IsHighlighted || IsPressed ) -->
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="Transparent" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="Transparent" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            <Setter TargetName="Arrow" Property="Opacity" Value="1" />
-                            <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -5207,7 +4757,7 @@
                             <Setter TargetName="InnerBorder" Property="CornerRadius" Value="0" />
                         </Trigger>
 
-                        
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -5740,92 +5290,11 @@
                             <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
 
-                        <!-- HighContrast -->
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                            <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="InnerBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                            <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="PART_HeaderButton" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="PART_ToggleButton" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="UnderlayBorder" Property="Opacity" Value="0" />
-                        </DataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="UnderlayBorder" Property="Opacity" Value="1" />
-                            <Setter TargetName="UnderlayBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=PART_ToggleButton,Path=IsKeyboardFocused}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="PART_HeaderButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=PART_ToggleButton, Path=IsKeyboardFocused}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_HeaderButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
 
                         <Trigger Property="IsInQuickAccessToolBar" Value="True">
                             <Setter TargetName="PART_HeaderButton" Property="CanAddToQuickAccessToolBarDirectly" Value="False" />
                         </Trigger>
 
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -6241,92 +5710,9 @@
                                     <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                                 </Trigger>
 
-                                <!-- HighContrast -->
-                                <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                                    <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                                    <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                                    <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                                    <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                    <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                                    <Setter TargetName="OuterBorder" Property="Background"  Value="Transparent" />
-                                    <Setter TargetName="OuterBorder" Property="CornerRadius"  Value="0" />
-                                    <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                                    <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                    <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                                    <Setter TargetName="PART_HeaderButton" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="PART_ToggleButton" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="UnderlayBorder" Property="Opacity" Value="0" />
-                                </DataTrigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                                    <Setter TargetName="OverlayBottomBorder" Property="BorderThickness" Value="1" />
-                                    <Setter TargetName="OverlayTopBorder" Property="BorderThickness" Value="0,1,0,0" />
-                                </MultiDataTrigger>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                        <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                    <Setter TargetName="InnerBorder" Property="Background" Value="Transparent" />
-                                </MultiDataTrigger>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                        <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="False" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="UnderlayBorder" Property="Opacity" Value="1" />
-                                    <Setter TargetName="UnderlayBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                </MultiDataTrigger>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding ElementName=PART_ToggleButton,Path=IsKeyboardFocused}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                    <Setter TargetName="PART_HeaderButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                                </MultiDataTrigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                                </MultiDataTrigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding ElementName=PART_ToggleButton, Path=IsKeyboardFocused}" Value="True" />
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_HeaderButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                    <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                </MultiDataTrigger>
-
                                 <Trigger Property="IsInQuickAccessToolBar" Value="True">
                                     <Setter TargetName="PART_HeaderButton" Property="CanAddToQuickAccessToolBarDirectly" Value="False" />
                                 </Trigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                </MultiDataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -6740,85 +6126,6 @@
                             <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                         </Trigger>
 
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                            <Setter TargetName="SideBarOverlay" Property="Background"  Value="Transparent" />
-                            <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="PART_SideBarBorder" Property="Background"  Value="Transparent" />
-                            <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                            <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                            <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                        </DataTrigger>
-                        <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="Transparent" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=PART_ArrowToggleButton, Path=IsChecked}"  Value="True"/>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_ArrowToggleButton" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                            <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -7132,85 +6439,7 @@
                                     <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
                                 </Trigger>
 
-                                <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
 
-                                    <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                                    <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                                    <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                                    <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                                    <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                                    <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                                    <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                                    <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                                    <Setter TargetName="SideBarOverlay" Property="Background"  Value="Transparent" />
-                                    <Setter TargetName="PART_SideBarBorder" Property="Background"  Value="Transparent" />
-                                    <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                    <Setter TargetName="PART_SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                    <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                                    <Setter TargetName="SubMenuInnerBorder" Property="Background" Value="Transparent" />
-                                    <Setter TargetName="SubMenuInnerBorder" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                    <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                                    <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                                    <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                                    <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                                    <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                                    <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                                </DataTrigger>
-                                <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                    <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                    <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                    <Setter TargetName="PART_SideBarBorder" Property="BorderBrush" Value="Transparent" />
-                                </MultiDataTrigger>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                                </MultiDataTrigger>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding ElementName=PART_ArrowToggleButton, Path=IsChecked}"  Value="True"/>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                </MultiDataTrigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                </MultiDataTrigger>
-
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding ElementName=PART_HeaderButton, Path=IsEnabled}" Value="False" />
-                                        <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                    <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                                    <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                    <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                </MultiDataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -7290,7 +6519,7 @@
                             <Setter TargetName="OuterRightLine" Property="Y2" Value="0" />
                             <Setter TargetName="OuterLeftLine" Property="Stroke" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type RibbonTab}}, Path=Ribbon.BorderBrush}" />
                             <Setter TargetName="OuterRightLine" Property="Stroke" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type RibbonTab}}, Path=Ribbon.BorderBrush}" />
-                        </MultiDataTrigger>                        
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -7311,7 +6540,7 @@
                         </ScrollViewer>
                     </Border>
                     <ControlTemplate.Triggers>
-                       
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -7499,14 +6728,6 @@
                             <Setter TargetName="MiddleBorder" Property="BorderBrush" Value="{StaticResource CheckedAppMenu}" />
                             <Setter TargetName="MiddleBorder" Property="Background" Value="{StaticResource CheckedAppMenu}" />
                         </MultiTrigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="CornerRadius" Value="0" />
-                            <Setter TargetName="MiddleBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="MiddleBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="MiddleBorder" Property="CornerRadius" Value="0" />
-                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -7836,7 +7057,7 @@
                             <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
                         </Trigger>
 
-                        
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -8133,66 +7354,6 @@
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
 
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PopupOverlayBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="PopupOverlayBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -8482,66 +7643,6 @@
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
 
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="PopupBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="PopupOverlayBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="PopupOverlayBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -8820,64 +7921,6 @@
                 <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="0.5" />
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -9158,64 +8201,6 @@
                 <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="0.5" />
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -9494,64 +8479,6 @@
                 <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="0.5" />
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -9830,64 +8757,6 @@
                 <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="0.5" />
                 <Setter TargetName="PART_HeaderButton" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
             </Trigger>
-
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightRightBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightLeftBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="HighlightRightBorderOverlay" Property="Background" Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Data" Value="{StaticResource &#237;}" />
-                <Setter TargetName="CheckMarkBorder" Property="CornerRadius" Value="0" />
-                <Setter TargetName="CheckMarkBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-            </DataTrigger>
-            <!-- HighContrast && (IsHighlighted || IsChecked ) -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHighlighted}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                <Setter TargetName="HighlightLeftBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                <Setter TargetName="HighlightRightBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ArrowToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMarkBorder" Property="Opacity" Value="1" />
-                <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                <Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -10092,58 +8961,6 @@
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
                         </Trigger>
 
-                        <!-- HighContrast -->
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter TargetName="Arrow" Property="Fill"  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="Arrow" Property="Fill"  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="Arrow" Property="Fill"  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -10205,47 +9022,6 @@
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
                         </Trigger>
 
-                        <!-- HighContrast -->
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter TargetName="Arrow" Property="Fill"  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" />
-                            <Setter TargetName="InnerBorder" Property="BorderBrush" Value="Transparent" />
-                            <Setter TargetName="Arrow" Property="Fill"  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -10518,49 +9294,6 @@
                 <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
             </Trigger>
 
-            <!-- HighContrast -->
-            <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                <!-- This is a hack for v3.0 to set the caret color to something visible in high contrast. Switch to using CaretBrush in v4 -->
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-                <Setter TargetName="Border" Property="Background" Value="Transparent"/>
-                <Setter TargetName="FocusVisual" Property="Stroke" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-            </DataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsInControlGroup}" Value="True" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
-            </MultiDataTrigger>
-
-            <!-- IsFocused -->
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                    <Condition Binding="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="PART_ToggleButton" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                <Setter TargetName="PART_ToggleButton" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                <Setter TargetName="PART_ToggleButton" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -10932,39 +9665,6 @@
                         <Trigger SourceName="PART_Popup" Property="Popup.IsOpen" Value="False">
                             <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
                         </Trigger>
-
-                        <!-- HighContrast -->
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                            <Setter TargetName="Shadow" Property="Color"  Value="Transparent" />
-                            <Setter TargetName="PART_Popup" Property="PopupAnimation"  Value="None" />
-                            <Setter TargetName="MenuBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="MenuBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="ResizeControl" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                            <!-- This is a hack for v3.0 to set the caret color to something visible in high contrast. Switch to using CaretBrush in v4 -->
-                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
-                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-                            <Setter TargetName="FocusVisual" Property="Stroke" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
-                            <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
-                        </DataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsInControlGroup}" Value="True" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
-                        </MultiDataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                                <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="MainBorder" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -11053,15 +9753,6 @@
                                           StrokeThickness="1"
                                           Stretch="Fill" />
                                     </Grid>
-
-                                    <ControlTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-                                            <Setter TargetName="SideBarBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                            <Setter TargetName="SideBarBorder" Property="Background"  Value="Transparent" />
-                                            <Setter TargetName="SideBarOverlay" Property="Background"  Value="Transparent" />
-                                            <Setter TargetName="Line" Property="Stroke" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                                        </DataTrigger>
-                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -11143,16 +9834,6 @@
                             <Setter TargetName="Shadow" Property="Margin" Value="0,0,5,5"/>
                             <Setter TargetName="Shadow" Property="Color" Value="{StaticResource &#213;}"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True">
-
-                            <Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
-
-                            <Setter TargetName="Shadow" Property="Color" Value="Transparent" />
-                            <Setter TargetName="SubMenuScrollViewer" Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                            <Setter TargetName="PART_ResizeBorder" Property="BorderBrush"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                            <Setter TargetName="PART_ResizeBorder" Property="Background"  Value="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" />
-                            <Setter TargetName="SubMenuInnerBorder" Property="Background"  Value="Transparent" />
-                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -11196,7 +9877,6 @@
                                            Text="{TemplateBinding Label}" />
                                 </Border>
                             </Border>
-                           
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -11235,7 +9915,7 @@
                                           StrokeThickness="1"
                                           Stretch="Fill" />
                                     </Grid>
-                                  
+
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -11254,13 +9934,12 @@
         <Setter Property="PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.PressedBackground}" />
         <Setter Property="PressedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.PressedBackground}" />
         <Setter Property="FocusedBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.FocusedBackground}" />
-        <Setter Property="FocusedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.FocusedBackground}" />        
+        <Setter Property="FocusedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.FocusedBackground}" />
         <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialShowDelay}" />
         <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ShowDuration}" />
         <Setter Property="ToolTipService.BetweenShowDelay" Value="{StaticResource BetweenShowDelay}" />
-        <Setter Property="RibbonTwoLineText.PathData" Value="{StaticResource &#255;}" />        
+        <Setter Property="RibbonTwoLineText.PathData" Value="{StaticResource &#255;}" />
         <Setter Property="QuickAccessToolBarControlSizeDefinition">
-            
             <Setter.Value>
                 <RibbonControlSizeDefinition ImageSize="Small" IsLabelVisible="False" />
             </Setter.Value>
@@ -11439,8 +10118,6 @@
                         <Trigger SourceName="PART_Popup" Property="Popup.IsOpen" Value="False">
                             <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
                         </Trigger>
-
-                      
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -11453,4 +10130,3 @@
     </Style>
 
 </ResourceDictionary>
-
