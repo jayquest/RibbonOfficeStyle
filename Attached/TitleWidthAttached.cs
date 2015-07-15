@@ -41,7 +41,7 @@ namespace ModernRibbon.Attached
                     first = false;
                 }
 
-                var iconMargin = 16;
+                var iconMargin = 27;
 
                 var contextualTabs = panel.Children.OfType<RibbonContextualTabGroupItemsControl>().FirstOrDefault();
                 var appmenus = panel.Children.OfType<Grid>().FirstOrDefault();
@@ -51,6 +51,7 @@ namespace ModernRibbon.Attached
 
                 var content = (TextBlock)VisualTreeHelper.GetChild(AssociatedObject, 0);
                 content.Padding = new Thickness(0);
+                content.UpdateLayout();
 
                 var titleWidth = content.ActualWidth;
 
@@ -59,8 +60,8 @@ namespace ModernRibbon.Attached
 
                 if (contextualTabs != null && contextualTabs.IsVisible && contextualTabs.ActualWidth != 0D)
                 {
-                    panelLeft += appmenusWidth + 10;
-                    panelRight += appmenusWidth + 10;
+                    panelLeft += appmenusWidth;
+                    panelRight += appmenusWidth;
 
                     Point ctxTabPos = contextualTabs.TransformToAncestor(panel).Transform(new Point(0, 0));
 

@@ -84,16 +84,14 @@
                 <ControlTemplate TargetType="{x:Type RibbonContextualTabGroup}">
                     <ControlTemplate.Resources>
                         <DataTemplate DataType="{x:Type system:String}">
-                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP"  Padding="10,0" />
+                            <TextBlock Text="{TemplateBinding Content}" FontSize="11.4" FontFamily="Segoi WP"  Padding="10,0" Margin="0,0,0,5" />
                         </DataTemplate>
-
-
                     </ControlTemplate.Resources>
                     <Border x:Name="OuterBorder"
                         Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding BorderBrush}"                        
                         BorderBrush="{TemplateBinding Background}"
-                        BorderThickness="0,5,0,0"                        
+                        BorderThickness="0,4,0,0"                        
                         CornerRadius="0"
                         RenderOptions.ClearTypeHint="Enabled">
                         <Border x:Name="InnerBorder"                                
@@ -193,6 +191,9 @@
      However, since this is not from SystemColors, we still need to use triggers to set the disabled
      foreground color to SystemColors.GrayTextBrushKey when in high-contrast. -->
     <SolidColorBrush x:Key="&#203;" Color="#FF9E9E9E" />
+
+    <!--Brush que da cor ao RibbonGroup igual do Word 20013 -->
+    <SolidColorBrush x:Key="&#206;" Color="#FF5B5A5A" />
 
     <!--RibbonToggleButton and RibbonRadioButton-->
 
@@ -876,7 +877,8 @@
                 <MultiTrigger.Conditions>
                     <Condition Property="IsChecked" Value="True" />
                     <Condition Property="IsMouseOver" Value="True" />
-                </MultiTrigger.Conditions>
+                </MultiTrigger.Conditions>               
+                <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PressedBackground}" />
                 <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
                 <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
             </MultiTrigger>
@@ -1546,7 +1548,7 @@
 
     <WindowChrome x:Key="WindowChromeGeneric" x:Shared="False"/>
 
-    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="23" UseAeroCaptionButtons="False" GlassFrameThickness="1" NonClientFrameEdges="None" />
+    <WindowChrome x:Key="WindowChromeAeroWithGlass" x:Shared="False" CornerRadius="0" CaptionHeight="23" UseAeroCaptionButtons="False" GlassFrameThickness="1" NonClientFrameEdges="None" ResizeBorderThickness="3" />
 
     <WindowChrome x:Key="WindowChromeAeroBasic" CaptionHeight="30" x:Shared="False" CornerRadius="0" NonClientFrameEdges="None"  />
 
@@ -1564,7 +1566,7 @@
                     <ControlTemplate.Resources>
 
                         <Style TargetType="{x:Type Button}" x:Key="&#201;">
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Background" Value="White"/>
                             <Setter Property="BorderBrush" Value="Gray"/>
                             <Setter Property="Padding" Value="8,2"/>
                             <Setter Property="Template">
@@ -1584,15 +1586,15 @@
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="False"/>
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Background" Value="White"/>
                                                 <Setter Property="BorderBrush" Value="LightGray"/>
                                             </MultiDataTrigger>
-                                            <MultiDataTrigger>
+                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Background" Value="#22005588"/>
+                                                <Setter Property="Background" Value="#FFD9E9F0"/>
                                                 <Setter Property="BorderBrush" Value="#BB005588"/>
                                             </MultiDataTrigger>
                                             <MultiDataTrigger>
@@ -1600,7 +1602,7 @@
                                                     <Condition Binding="{Binding Path=IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="True"/>
                                                     <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Self}}" Value="True"/>
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Background" Value="#33005588"/>
+                                                <Setter Property="Background" Value="#FFC6DEE8"/>
                                                 <Setter Property="BorderBrush" Value="#FF005588"/>
                                             </MultiDataTrigger>
                                         </ControlTemplate.Triggers>
@@ -1711,20 +1713,21 @@
                                                Height="16"											  
 											   Margin="9,1,0,1"/>
 
-                                        <StackPanel Orientation="Horizontal"
+                                        <StackPanel Name="WindowButtonsPanel"
+                                                    Orientation="Horizontal"
                                                     HorizontalAlignment="Right"
 													VerticalAlignment="Top"
                                                     Height="22"
-													Margin="0,2,0,2"
+													Margin="0,2,-1,2"
 													>
                                             <Button Name="PART_MinimizeWindowButton" Focusable="False"
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                                     Command="SystemCommands.MinimizeWindowCommand"
-													
+                                                    HorizontalContentAlignment="Center"
                                                     Style="{StaticResource &#201;}"
-                                                    Width="28">
+                                                    Width="29">
                                                 <Button.Content>
-                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="2" Width="9" BorderBrush="{Binding Parent.BorderBrush, Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="1" VerticalAlignment="Center" Margin="0,6,0,0"/>
+                                                    <Border Name="MinimizeButtonBorder"  RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased" Height="2" Width="9" BorderBrush="{Binding Parent.BorderBrush, Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="1" VerticalAlignment="Center" Margin="0,6,1,0"/>
                                                 </Button.Content>
                                             </Button>
                                             <Button Name="PART_MaximizeWindowButton" Focusable="False"
@@ -1732,9 +1735,9 @@
                                                     Command="SystemCommands.MaximizeWindowCommand"
 													
                                                     Style="{StaticResource &#201;}"                                                    
-                                                    Width="28">
+                                                    Width="29">
                                                 <Button.Content>
-                                                    <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="10" Width="12" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,3,1,1" VerticalAlignment="Center" />
+                                                    <Border RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased" Height="10" Width="10" BorderBrush="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,3,1,1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                 </Button.Content>
                                             </Button>
                                             <Button Name="PART_RestoreWindowButton" Focusable="False"
@@ -1742,12 +1745,12 @@
                                                     Command="SystemCommands.RestoreWindowCommand"
                                                     Style="{StaticResource &#201;}"
 													Visibility="Collapsed"
-                                                    Width="28"
+                                                    Width="29"
                                                     >
                                                 <Button.Content>
                                                     <Grid>
-                                                        <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="0,2,1,0" VerticalAlignment="Center" Margin="4,0,0,3"/>
-                                                        <Border RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Height="8" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="0,2,0,0"/>
+                                                        <Border RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased" Height="7" Width="8" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="2,2,0,4"/>
+                                                        <Border RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased" Height="7" Width="8" Background="{Binding Parent.Parent.Background,  Mode=OneWay,RelativeSource={RelativeSource Self}}"  BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" BorderThickness="1,2,1,1" VerticalAlignment="Center" Margin="0,3,3,0"/>
                                                     </Grid>
                                                 </Button.Content>
                                             </Button>
@@ -1755,26 +1758,13 @@
                                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                                     Command="SystemCommands.CloseWindowCommand"
                                                     Style="{StaticResource &#201;}"
-                                                    
-                                                    Width="30">
+                                                    RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased" 
+                                                    Width="29"
+                                                    HorizontalContentAlignment="Center"
+                                                    >
                                                 <Button.Content>
-                                                    <Grid>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,2,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                                                            <Border.RenderTransform>
-                                                                <TransformGroup>
-                                                                    <ScaleTransform/>
-                                                                    <SkewTransform/>
-                                                                    <RotateTransform Angle="45"/>
-                                                                    <TranslateTransform/>
-                                                                </TransformGroup>
-                                                            </Border.RenderTransform>
-                                                        </Border>
-                                                        <Border Height="2" Width="12" BorderBrush="{Binding Parent.Parent.BorderBrush,  Mode=OneWay, RelativeSource={RelativeSource Self}}" BorderThickness="0,0,0,2" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                                                            <Border.RenderTransform>
-                                                                <RotateTransform Angle="315"/>
-                                                            </Border.RenderTransform>
-                                                        </Border>
-                                                    </Grid>
+                                                    <Path Width="29" Height="22" SnapsToDevicePixels="True" Fill="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" Stroke="{Binding Parent.BorderBrush,  Mode=OneWay,RelativeSource={RelativeSource Self}}" 
+                                                          StrokeThickness="1"  Data="M 10 6 L 19 15 M 9 7 L 18 16 M 10 7 L 18 15 M 19 7 L 10 16 M 18 7 L 10 15 M 18 6 L 9 15" />
                                                 </Button.Content>
                                             </Button>
                                         </StackPanel>
@@ -1807,7 +1797,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
                             <!-- Gray out the outer border. -->
-                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="LightGray"/>
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#FF838383"/>
 
                             <!-- The shadow gradient over the title panel becomes less pronounced. -->
                             <!--<Setter TargetName="TitlePanelOverlay" Property="Background" Value="{StaticResource &#225;}"/>-->
@@ -1821,8 +1811,10 @@
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="PART_Icon" Property="Margin" Value="12,0,0,0"/>
                             <Setter TargetName="TitleGrid" Property="Margin" Value="5" />
+                            <Setter TargetName="WindowButtonsPanel" Property="Margin" Value="0,2,2,2"/>
                             <Setter Property="WindowChrome.GlassFrameThickness" Value="1" />
-                            <Setter TargetName="PART_RootContentPresenter" Property="Margin" Value="4,0,4,4" />
+                            <Setter TargetName="PART_RootContentPresenter" Property="Margin" Value="5,0,5,5" />
+                            <Setter TargetName="MinimizeButtonBorder" Property="Margin" Value="0,5,1,0" />                            
                             <Setter TargetName="PART_MaximizeWindowButton" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="PART_RestoreWindowButton" Property="Visibility" Value="Visible"/>
                         </Trigger>
@@ -1860,7 +1852,7 @@
     ==================================================================-->
     <SolidColorBrush x:Key="&#204;" Color="#60FFFFFF"/>
     <SolidColorBrush x:Key="RibbonBackground" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="RibbonBorderBrush" Color="#B9C9DA" />
+    <SolidColorBrush x:Key="RibbonBorderBrush" Color="#FFD4D4D4" />
     <LinearGradientBrush x:Key="&#205;" StartPoint="0.5,0.0" EndPoint="0.5,1.0" >
         <GradientStop Color="#EEFFFFFF" Offset="0.0"/>
         <GradientStop Color="#BBFFFFFF" Offset="0.1"/>
@@ -1913,7 +1905,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"/>
 
                         <!-- Popup hosting the groups when IsMinimized=true -->
-                        <Border Grid.ColumnSpan="3" Grid.Row="1" MinHeight="24">
+                        <Border Grid.ColumnSpan="3" Grid.Row="1">
                             <Popup x:Name="PART_ITEMSPRESENTERPOPUP" 
                                AllowsTransparency="True" 
                                IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
@@ -1937,7 +1929,7 @@
                                     Background="{StaticResource &#205;}" 
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="0,0,0,1"
-                                    Height="{StaticResource &#211;}"
+                                    MaxHeight="{StaticResource &#211;}"
                                     SnapsToDevicePixels="True">
                                 <Border BorderThickness="0,0,0,1" Margin="0,0,0,1" BorderBrush="{StaticResource &#204;}" SnapsToDevicePixels="True">
                                     <ItemsPresenter Name="ItemsPresenter" />
@@ -1957,7 +1949,7 @@
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="0,0,0,1"
                                   Visibility="Collapsed" />
-                        <DockPanel Grid.Column="0" Grid.ColumnSpan="3" LastChildFill="True" Height="29">
+                        <DockPanel Name="TitleDockPanel"  Grid.Column="0" Grid.ColumnSpan="3" LastChildFill="True" Height="29">
                             <!-- This makes sure that the title and QAT does not overlap the close minimize and restore buttons. -->
                             <ContentControl x:Name="windowButtonPlaceHolder" 
                                         Width="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowCaptionButtonsLocation.Width}" 
@@ -2108,6 +2100,8 @@
                             <Setter TargetName="BackgroundBorder" Property="Grid.RowSpan" Value="4" />
                             <Setter TargetName="titleBarBackground" Property="Visibility" Value="Visible" />
                             <Setter TargetName="windowIconPadding" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="RibbonGridFirstRow" Property="MinHeight"  Value="0"/>
+                            <Setter TargetName="TitleDockPanel" Property="Height"  Value="0"/>
                         </Trigger>
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter Property="BorderThickness" Value="0" TargetName="BackgroundBorder"/>
@@ -2123,14 +2117,10 @@
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PART_TitleHost" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
                         </MultiDataTrigger>
-
-
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RibbonWindow}, Path=WindowState}" Value="Maximized" >
                             <Setter TargetName="PART_TitleHost" Property="Margin" Value="3,1,3,0" />
                             <Setter TargetName="PART_ContextualTabGroupItemsControl" Property="Margin" Value="0,4,0,0" />
                         </DataTrigger>
-
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -2946,12 +2936,12 @@
         <Setter Property="CornerRadius" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.MouseOverBackground}" />
-        <Setter Property="MouseOverBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.MouseOverBackground}" />
-        <Setter Property="PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.PressedBackground}" />
-        <Setter Property="PressedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.PressedBackground}" />
-        <Setter Property="FocusedBorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.FocusedBackground}" />
-        <Setter Property="FocusedBackground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Ribbon.FocusedBackground}" />
+        <Setter Property="MouseOverBorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=MouseOverBackground}" />
+        <Setter Property="MouseOverBackground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=MouseOverBackground}" />
+        <Setter Property="PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=PressedBackground}" />
+        <Setter Property="PressedBackground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=PressedBackground}" />
+        <Setter Property="FocusedBorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=FocusedBackground}" />
+        <Setter Property="FocusedBackground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Ribbon}}, Path=FocusedBackground}" />
         <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialShowDelay}" />
         <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ShowDuration}" />
         <Setter Property="ToolTipService.BetweenShowDelay" Value="{StaticResource BetweenShowDelay}" />
@@ -3408,10 +3398,7 @@
                                Focusable="False"
                                PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
                             <classic:SystemDropShadowChrome Name="Shadow" Color="Transparent" KeyTipService.IsKeyTipScope="True"
-
-                               RenderOptions.ClearTypeHint="Enabled"
-
-                            >
+                               RenderOptions.ClearTypeHint="Enabled">
                                 <Border Name="MenuBorder"
                                         BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Ribbon.BorderBrush}"
                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Ribbon.Background}"
@@ -3548,20 +3535,19 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RibbonGallery}">
                     <Border x:Name="Border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderBrush="Transparent"
                             Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True">
                         <Border x:Name="InnerBorder"
-                                Background="{StaticResource &#239;}">
+                                Background="Transparent">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Grid x:Name="FilterHost">
-                                    <ContentPresenter x:Name="PART_FilterContentPane"
-                                                      ContentSource="FilterPaneContent"/>
+                                    <ContentPresenter x:Name="PART_FilterContentPane" ContentSource="FilterPaneContent"/>
                                     <RibbonFilterMenuButton x:Name="PART_FilterMenuButton"
                                                                    Style="{TemplateBinding FilterMenuButtonStyle}"
                                                                    ItemContainerStyleSelector="{TemplateBinding FilterItemContainerStyleSelector}"
@@ -3586,7 +3572,7 @@
                                                             Fill="{Binding ElementName=Border,Path=Background}" />
                                         </Canvas>
 
-                                        <ItemsPresenter Margin="5"
+                                        <ItemsPresenter Margin="0"
                                                             x:Name="ItemsPresenter"
                                                             KeyboardNavigation.DirectionalNavigation="Continue"
                                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
@@ -3598,8 +3584,7 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-
-                        <Trigger SourceName="PART_ScrollViewer"
+                       <Trigger SourceName="PART_ScrollViewer"
                                  Property="ScrollViewer.CanContentScroll"
                                  Value="false">
                             <Setter TargetName="OpaqueRect" 
@@ -3792,7 +3777,9 @@
                                 <Condition Property="IsHighlighted" Value="True"/>
                                 <Condition Property="IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="InnerBorder" Property="Background" Value="{StaticResource &#269;}" />
+                            <Setter TargetName="InnerBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CheckedBorderBrush}" />
+                            <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
                         </MultiTrigger>
 
                     </ControlTemplate.Triggers>
@@ -4072,6 +4059,45 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    
+    <ControlTemplate x:Key="EmptyHeaderRibbonGroup" TargetType="{x:Type RibbonGroup}">
+        <Border Name="GroupBorder"
+            Background="{TemplateBinding Background}"
+            Margin="1,2,0,0">
+            <Grid x:Name="MainGrid">           
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Border Name="PART_HotBackground"
+                        Background="{TemplateBinding MouseOverBackground}"
+                        BorderBrush="{TemplateBinding MouseOverBorderBrush}"
+                        Opacity="0"                      
+                        CornerRadius="0"
+                        BorderThickness="1"
+                        SnapsToDevicePixels="True"/>
+                <Border Name="SeparatorBorder" Background="{TemplateBinding BorderBrush}"
+						Margin="0,1,0,1"
+                        Grid.Column="1"                                
+						Opacity="0.7"              
+                        Width="1"
+                        VerticalAlignment="Stretch"
+                        SnapsToDevicePixels="True" />
+                <Border Margin="2,1,2,0" Padding="3,0,3,0">
+                    <Grid>
+                        <ItemsPresenter Name="ItemsPresenter"/>
+                        <ContentControl Name="TemplateContentControl" Visibility="Collapsed" Focusable="False"/>
+                    </Grid>
+                </Border>                 
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{StaticResource &#203;}"/>
+            </Trigger>                       
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
     <ControlTemplate x:Key="&#290;" TargetType="{x:Type RibbonGroup}">
         <Border Name="GroupBorder"
@@ -4115,10 +4141,13 @@
                     Margin="5,1,5,-1"/>
                 <Grid Margin="2,0,2,0" Grid.Row="2">
                     <ContentPresenter Name="PART_Header"
-                                  TextElement.Foreground="{StaticResource &#203;}"
+                                  TextElement.Foreground="{StaticResource &#206;}"
                                   ContentSource="Header"
                                   Margin="2,0,2,0"
                                   MaxHeight="16"
+                                  TextBlock.FontWeight="Medium"
+                                  TextBlock.FontFamily="Segoe Ui Symbol"
+                                  TextBlock.FontSize="11"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
                 </Grid>
@@ -4146,15 +4175,7 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger.Actions>
-            </EventTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                    <Condition Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter TargetName="MainGrid" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </MultiDataTrigger>
+            </EventTrigger>            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -4304,6 +4325,9 @@
         <Style.Triggers>
             <Trigger Property="IsCollapsed" Value="True">
                 <Setter Property="Template" Value="{StaticResource &#291;}" />
+            </Trigger>
+            <Trigger Property="Header" Value="{x:Null}" >
+                <Setter Property="Template" Value="{StaticResource EmptyHeaderRibbonGroup}" />
             </Trigger>
             <Trigger Property="HasItems" Value="False">
                 <Setter Property="Visibility" Value="Hidden" />
@@ -4729,6 +4753,7 @@
                                 <Condition Property="IsChecked" Value="True" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PressedBackground}" />
                             <Setter TargetName="OuterBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
                             <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBackground}" />
                         </MultiTrigger>
